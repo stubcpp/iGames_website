@@ -21,6 +21,18 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="js/i18n.js" defer></script>
+  <style>
+    #download-menu:not([hidden]) {
+      animation: download-menu-in 160ms ease-out;
+    }
+    @keyframes download-menu-in {
+      from { opacity: 0; transform: translateY(-6px) scale(0.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #download-menu:not([hidden]) { animation: none; }
+    }
+  </style>
 </head>
 <body class="font-sans bg-white text-gray-800 antialiased">
 
@@ -28,14 +40,17 @@
 
   <header class="fixed inset-x-0 top-0 z-50 h-16 border-b border-gray-200 bg-white/95 backdrop-blur">
     <div class="mx-auto flex h-full max-w-6xl items-center justify-between px-4 sm:px-6">
-      <a href="index.html" class="flex items-center gap-2 rounded-lg text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
-        <svg class="h-7 w-7 flex-none text-blue-600" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" focusable="false">
+      <a href="index.html" aria-label="iGames — Intellectual Games" class="flex items-center gap-2 rounded-lg text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+        <svg class="h-7 w-7 flex-none text-blue-600 sm:h-8 sm:w-8" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" focusable="false">
           <rect x="4" y="4" width="10" height="10" rx="2"/>
           <rect x="18" y="4" width="10" height="10" rx="2"/>
           <rect x="4" y="18" width="10" height="10" rx="2"/>
           <rect x="18" y="18" width="10" height="10" rx="2"/>
         </svg>
-        <span class="text-lg font-semibold tracking-tight">iGames</span>
+        <span class="flex flex-col items-start">
+          <span class="text-lg font-bold leading-none text-gray-900">iGames</span>
+          <span class="mt-0.5 text-[10px] font-medium leading-none text-indigo-600">iNtellectual games</span>
+        </span>
       </a>
 
       <nav class="hidden items-center gap-6 lg:flex" aria-label="Основна навігація" data-i18n-aria-label="nav.primaryAria">
@@ -122,51 +137,168 @@
         </p>
 
         <!-- TODO: replace placeholder download paths with real release asset URLs -->
-        <div id="download" class="mt-10 scroll-mt-20">
-          <div class="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <a href="downloads/igames-windows-x64.zip" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:text-base">
-              <svg class="h-5 w-5 flex-none" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
-                <path d="M3 5.5 10.5 4.5v7H3v-6Zm0 13 7.5 1v-7H3v6ZM11.5 4.3 21 3v8.5h-9.5v-7.2Zm0 15.4L21 21v-8.5h-9.5v7.2Z"/>
-              </svg>
-              <span data-i18n="download.windows">Завантажити для Windows</span>
-            </a>
+        <div id="download" class="mt-10 scroll-mt-20" data-download>
+          <p class="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-gray-200 bg-white px-3 py-1 text-[11px] font-medium text-gray-600 sm:text-xs">
+            <span class="h-1.5 w-1.5 flex-none rounded-full bg-blue-600" aria-hidden="true"></span>
+            <span data-i18n="download.availability">Доступно для Windows, Linux та macOS</span>
+          </p>
 
-            <a href="downloads/igames-linux-x86_64.tar.gz" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:text-base">
-              <svg class="h-5 w-5 flex-none" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
-                <path d="M12 2c-1.9 0-3.1 1.5-3.1 3.4 0 1.3.4 2.2.4 3.2 0 .9-.5 1.5-1.3 2.5-1.2 1.4-2.3 3.1-2.3 4.7 0 .6.1 1.1.3 1.6-.6.5-1 1-1 1.5 0 1.1 1.4 1.9 3.1 1.9 1 0 1.9-.3 2.5-.8.4.1.9.2 1.4.2s1-.1 1.4-.2c.6.5 1.5.8 2.5.8 1.7 0 3.1-.8 3.1-1.9 0-.5-.4-1-1-1.5.2-.5.3-1 .3-1.6 0-1.6-1.1-3.3-2.3-4.7-.8-1-1.3-1.6-1.3-2.5 0-1 .4-1.9.4-3.2C15.1 3.5 13.9 2 12 2Zm-1.2 2.9c.4 0 .7.4.7.9s-.3.9-.7.9-.7-.4-.7-.9.3-.9.7-.9Zm2.4 0c.4 0 .7.4.7.9s-.3.9-.7.9-.7-.4-.7-.9.3-.9.7-.9ZM12 7.1l.8 1.5h-1.6l.8-1.5Zm-2.6 3.3c.3.4.4.9.3 1.3l-1.2-.4c.2-.3.5-.6.9-.9Zm5.2 0c.4.3.7.6.9.9l-1.2.4c-.1-.4 0-.9.3-1.3ZM9.2 16.4c-.5 0-.9.3-.9.7s.4.7.9.7.9-.3.9-.7-.4-.7-.9-.7Zm5.6 0c-.5 0-.9.3-.9.7s.4.7.9.7.9-.3.9-.7-.4-.7-.9-.7Z"/>
+          <div class="relative mx-auto mt-4 max-w-xl">
+            <button type="button" data-download-trigger aria-expanded="false" aria-controls="download-menu" class="flex w-full items-center justify-between gap-4 rounded-xl bg-blue-600 px-3.5 py-4 text-left text-white shadow-lg shadow-blue-600/20 transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:px-5">
+              <span class="flex min-w-0 flex-1 items-center gap-2.5 sm:gap-3">
+                <span class="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-white/15 sm:h-10 sm:w-10" aria-hidden="true">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                    <path d="M12 3v12"/>
+                    <path d="m7 10 5 5 5-5"/>
+                    <path d="M5 21h14"/>
+                  </svg>
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block text-sm font-semibold sm:text-base" data-i18n="download.trigger">Завантажити iGames</span>
+                  <span class="mt-0.5 block text-xs leading-snug text-blue-100" data-i18n="download.triggerHint">Оберіть платформу та формат</span>
+                </span>
+              </span>
+              <svg data-download-chevron class="h-5 w-5 flex-none transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="m6 9 6 6 6-6"/>
               </svg>
-              <span data-i18n="download.linux">Завантажити для Linux</span>
-            </a>
+            </button>
 
-            <a href="downloads/igames-macos-universal.dmg" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:text-base">
-              <svg class="h-5 w-5 flex-none" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
-                <path d="M16.4 12.7c0-2 1.6-3 1.7-3.1-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7-1.3 0-2.6.8-3.3 2-1.4 2.4-.4 6 1 8 .7 1 1.4 2 2.4 2 1 0 1.3-.6 2.5-.6s1.5.6 2.5.6c1 0 1.7-.9 2.3-1.9.7-1 1-2 1-2.1-.1 0-2.1-.8-2.1-3.4ZM14.5 6.6c.5-.7.9-1.6.8-2.6-.8 0-1.8.5-2.4 1.2-.5.6-1 1.6-.8 2.5.9.1 1.9-.4 2.4-1.1Z"/>
-              </svg>
-              <span data-i18n="download.macos">Завантажити для macOS</span>
-            </a>
+            <div id="download-menu" class="absolute left-0 right-0 z-40 mt-3 max-h-[70vh] overflow-y-auto overscroll-contain rounded-2xl border border-gray-200 bg-white p-4 text-left shadow-xl shadow-gray-900/10 sm:p-5" hidden>
+              <div class="flex items-center justify-between gap-3">
+                <p id="download-menu-title" class="text-[11px] font-semibold uppercase tracking-wide text-indigo-600" data-i18n="download.menuTitle">Оберіть платформу</p>
+                <button type="button" data-download-close aria-label="Закрити меню завантажень" data-i18n-aria-label="download.closeAria" class="flex h-8 w-8 flex-none items-center justify-center rounded-lg text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+                    <path d="M6 6l12 12M18 6 6 18"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div role="tablist" aria-labelledby="download-menu-title" class="mt-4 grid grid-cols-3 gap-1 rounded-xl border border-gray-200 bg-gray-50 p-1">
+                <button type="button" role="tab" id="download-tab-windows" aria-selected="true" aria-controls="download-panel-windows" tabindex="0" data-download-tab class="flex items-center justify-center gap-1.5 rounded-lg bg-white px-2 py-2 text-xs font-semibold text-gray-900 shadow-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                  <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                    <path d="M3 5.5 10.5 4.5v7H3v-6Zm0 13 7.5 1v-7H3v6ZM11.5 4.3 21 3v8.5h-9.5v-7.2Zm0 15.4L21 21v-8.5h-9.5v7.2Z"/>
+                  </svg>
+                  <span data-i18n="download.os.windows">Windows</span>
+                </button>
+
+                <button type="button" role="tab" id="download-tab-linux" aria-selected="false" aria-controls="download-panel-linux" tabindex="-1" data-download-tab class="flex items-center justify-center gap-1.5 rounded-lg px-2 py-2 text-xs font-semibold text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                  <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                    <path d="M12 2c-1.9 0-3.1 1.5-3.1 3.4 0 1.3.4 2.2.4 3.2 0 .9-.5 1.5-1.3 2.5-1.2 1.4-2.3 3.1-2.3 4.7 0 .6.1 1.1.3 1.6-.6.5-1 1-1 1.5 0 1.1 1.4 1.9 3.1 1.9 1 0 1.9-.3 2.5-.8.4.1.9.2 1.4.2s1-.1 1.4-.2c.6.5 1.5.8 2.5.8 1.7 0 3.1-.8 3.1-1.9 0-.5-.4-1-1-1.5.2-.5.3-1 .3-1.6 0-1.6-1.1-3.3-2.3-4.7-.8-1-1.3-1.6-1.3-2.5 0-1 .4-1.9.4-3.2C15.1 3.5 13.9 2 12 2Zm-1.2 2.9c.4 0 .7.4.7.9s-.3.9-.7.9-.7-.4-.7-.9.3-.9.7-.9Zm2.4 0c.4 0 .7.4.7.9s-.3.9-.7.9-.7-.4-.7-.9.3-.9.7-.9ZM12 7.1l.8 1.5h-1.6l.8-1.5Zm-2.6 3.3c.3.4.4.9.3 1.3l-1.2-.4c.2-.3.5-.6.9-.9Zm5.2 0c.4.3.7.6.9.9l-1.2.4c-.1-.4 0-.9.3-1.3ZM9.2 16.4c-.5 0-.9.3-.9.7s.4.7.9.7.9-.3.9-.7-.4-.7-.9-.7Zm5.6 0c-.5 0-.9.3-.9.7s.4.7.9.7.9-.3.9-.7-.4-.7-.9-.7Z"/>
+                  </svg>
+                  <span data-i18n="download.os.linux">Linux</span>
+                </button>
+
+                <button type="button" role="tab" id="download-tab-macos" aria-selected="false" aria-controls="download-panel-macos" tabindex="-1" data-download-tab class="flex items-center justify-center gap-1.5 rounded-lg px-2 py-2 text-xs font-semibold text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                  <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                    <path d="M16.4 12.7c0-2 1.6-3 1.7-3.1-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7-1.3 0-2.6.8-3.3 2-1.4 2.4-.4 6 1 8 .7 1 1.4 2 2.4 2 1 0 1.3-.6 2.5-.6s1.5.6 2.5.6c1 0 1.7-.9 2.3-1.9.7-1 1-2 1-2.1-.1 0-2.1-.8-2.1-3.4ZM14.5 6.6c.5-.7.9-1.6.8-2.6-.8 0-1.8.5-2.4 1.2-.5.6-1 1.6-.8 2.5.9.1 1.9-.4 2.4-1.1Z"/>
+                  </svg>
+                  <span data-i18n="download.os.macos">macOS</span>
+                </button>
+              </div>
+
+              <div role="tabpanel" id="download-panel-windows" aria-labelledby="download-tab-windows" class="mt-3 space-y-2">
+                <a href="downloads/igames-windows-x64-setup.exe" download class="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 transition-colors hover:border-blue-200 hover:bg-blue-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+                  <span class="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-[9px] font-bold uppercase tracking-wide text-gray-600" aria-hidden="true">EXE</span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-sm font-semibold text-gray-900" data-i18n="download.windows.installer">Інсталятор .exe</span>
+                    <span class="mt-0.5 block text-xs text-gray-500" data-i18n="download.windows.installerDesc">Класичне встановлення</span>
+                  </span>
+                  <svg class="h-4 w-4 flex-none text-gray-400 group-hover:text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M12 4v11"/>
+                    <path d="m7 10 5 5 5-5"/>
+                    <path d="M5 20h14"/>
+                  </svg>
+                </a>
+
+                <a href="downloads/igames-windows-x64.zip" download class="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 transition-colors hover:border-blue-200 hover:bg-blue-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+                  <span class="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-[9px] font-bold uppercase tracking-wide text-gray-600" aria-hidden="true">ZIP</span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-sm font-semibold text-gray-900" data-i18n="download.windows.portable">Портативний .zip</span>
+                    <span class="mt-0.5 block text-xs text-gray-500" data-i18n="download.windows.portableDesc">Без встановлення — розпакуйте та запускайте</span>
+                  </span>
+                  <svg class="h-4 w-4 flex-none text-gray-400 group-hover:text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M12 4v11"/>
+                    <path d="m7 10 5 5 5-5"/>
+                    <path d="M5 20h14"/>
+                  </svg>
+                </a>
+              </div>
+
+              <div role="tabpanel" id="download-panel-linux" aria-labelledby="download-tab-linux" class="mt-3 space-y-2" hidden>
+                <a href="downloads/igames-linux-amd64.deb" download class="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 transition-colors hover:border-blue-200 hover:bg-blue-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+                  <span class="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-[9px] font-bold uppercase tracking-wide text-gray-600" aria-hidden="true">DEB</span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-sm font-semibold text-gray-900" data-i18n="download.linux.deb">.deb пакет</span>
+                    <span class="mt-0.5 block text-xs text-gray-500" data-i18n="download.linux.debDesc">Для Ubuntu та Debian</span>
+                  </span>
+                  <svg class="h-4 w-4 flex-none text-gray-400 group-hover:text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M12 4v11"/>
+                    <path d="m7 10 5 5 5-5"/>
+                    <path d="M5 20h14"/>
+                  </svg>
+                </a>
+
+                <a href="downloads/igames-linux-x86_64.rpm" download class="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 transition-colors hover:border-blue-200 hover:bg-blue-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+                  <span class="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-[9px] font-bold uppercase tracking-wide text-gray-600" aria-hidden="true">RPM</span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-sm font-semibold text-gray-900" data-i18n="download.linux.rpm">.rpm пакет</span>
+                    <span class="mt-0.5 block text-xs text-gray-500" data-i18n="download.linux.rpmDesc">Для Fedora та RHEL</span>
+                  </span>
+                  <svg class="h-4 w-4 flex-none text-gray-400 group-hover:text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M12 4v11"/>
+                    <path d="m7 10 5 5 5-5"/>
+                    <path d="M5 20h14"/>
+                  </svg>
+                </a>
+
+                <a href="downloads/igames-linux-x86_64.tar.gz" download class="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 transition-colors hover:border-blue-200 hover:bg-blue-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+                  <span class="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-[9px] font-bold uppercase tracking-wide text-gray-600" aria-hidden="true">TAR</span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-sm font-semibold text-gray-900" data-i18n="download.linux.tarball">.tar.gz архів</span>
+                    <span class="mt-0.5 block text-xs text-gray-500" data-i18n="download.linux.tarballDesc">Розпакуйте та запускайте</span>
+                  </span>
+                  <svg class="h-4 w-4 flex-none text-gray-400 group-hover:text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M12 4v11"/>
+                    <path d="m7 10 5 5 5-5"/>
+                    <path d="M5 20h14"/>
+                  </svg>
+                </a>
+              </div>
+
+              <div role="tabpanel" id="download-panel-macos" aria-labelledby="download-tab-macos" class="mt-3 space-y-2" hidden>
+                <a href="downloads/igames-macos-universal.dmg" download class="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 transition-colors hover:border-blue-200 hover:bg-blue-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+                  <span class="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-[9px] font-bold uppercase tracking-wide text-gray-600" aria-hidden="true">DMG</span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-sm font-semibold text-gray-900" data-i18n="download.macos.dmg">.dmg інсталятор</span>
+                    <span class="mt-0.5 block text-xs text-gray-500" data-i18n="download.macos.dmgDesc">Стандартне встановлення для macOS</span>
+                  </span>
+                  <svg class="h-4 w-4 flex-none text-gray-400 group-hover:text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M12 4v11"/>
+                    <path d="m7 10 5 5 5-5"/>
+                    <path d="M5 20h14"/>
+                  </svg>
+                </a>
+
+                <a href="downloads/igames-macos-universal.zip" download class="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 transition-colors hover:border-blue-200 hover:bg-blue-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+                  <span class="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-[9px] font-bold uppercase tracking-wide text-gray-600" aria-hidden="true">ZIP</span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-sm font-semibold text-gray-900" data-i18n="download.macos.zip">Портативний .zip</span>
+                    <span class="mt-0.5 block text-xs text-gray-500" data-i18n="download.macos.zipDesc">Без встановлення — розпакуйте та запускайте</span>
+                  </span>
+                  <svg class="h-4 w-4 flex-none text-gray-400 group-hover:text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M12 4v11"/>
+                    <path d="m7 10 5 5 5-5"/>
+                    <path d="M5 20h14"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
-          <p class="mt-4 text-sm text-gray-500" data-i18n="download.availability">Доступно для Windows, Linux та macOS</p>
         </div>
 
         <figure class="mt-16">
-          <!-- TODO: replace with images/client-screenshot.png -->
-          <div class="overflow-hidden rounded-xl border border-gray-200 bg-white text-left shadow-sm">
-            <div class="flex items-center gap-2 border-b border-gray-200 bg-gray-50 px-4 py-3">
-              <span class="h-2.5 w-2.5 rounded-full bg-gray-200" aria-hidden="true"></span>
-              <span class="h-2.5 w-2.5 rounded-full bg-gray-200" aria-hidden="true"></span>
-              <span class="h-2.5 w-2.5 rounded-full bg-gray-200" aria-hidden="true"></span>
-              <span class="ml-2 text-xs font-medium text-gray-500">iGames</span>
-            </div>
-            <div class="p-3 sm:p-5">
-              <div class="flex aspect-[16/9] flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-gray-300 bg-gray-50 px-6 text-center">
-                <svg class="h-10 w-10 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                  <rect x="3" y="4" width="18" height="16" rx="2"/>
-                  <circle cx="8.5" cy="9.5" r="1.5"/>
-                  <path d="m21 15-4.5-4.5L7 20"/>
-                </svg>
-                <p class="text-sm font-medium text-gray-500 sm:text-base" data-i18n="screenshot.placeholder">Скріншот додатка з'явиться незабаром</p>
-              </div>
-            </div>
+          <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+            <img src="images/client-screenshot.png" width="1282" height="769" alt="Інтерфейс шахової партії в iGames: дошка, таймер, чат кімнати та історія ходів." data-i18n-alt="screenshot.alt" class="block h-auto w-full" decoding="async">
           </div>
           <figcaption class="mt-3 text-center text-xs font-medium text-gray-500" data-i18n="screenshot.title">Інтерфейс програми iGames (Intellectual Games)</figcaption>
         </figure>
@@ -180,7 +312,6 @@
           <p class="mt-4 text-base leading-relaxed text-gray-600" data-i18n="about.description">
             iGames — це легка та сучасна ігрова екосистема, створена для шанувальників інтелектуальних настільних ігор, де швидкість роботи поєднується з безкомпромісною чесністю онлайн-змагань.
           </p>
-          <p class="mt-3 text-sm font-medium text-blue-700" data-i18n="about.nameMeaning">Літера «i» в назві означає Intellectual Games — інтелектуальні ігри.</p>
         </div>
 
         <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
