@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="docs.meta.title">Документація — iGames</title>
+  <meta name="description" content="Дізнайтеся, як почати грати в iGames, вивчіть правила класичних шашок 8х8 і довгих нард та розберіться, як працює рейтинг ELO." data-i18n-content="docs.meta.description">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+
+  <meta property="og:title" content="Документація iGames" data-i18n-content="docs.meta.ogTitle">
+  <meta property="og:description" content="Правила, рейтинг ELO та практичні поради для впевненого старту в iGames." data-i18n-content="docs.meta.ogDescription">
+  <meta property="og:locale" content="uk_UA" data-i18n-content="meta.ogLocale">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="iGames">
+  <!-- TODO: add canonical URL when domain is known -->
+  <!-- TODO: add og:url and og:image when domain and assets are ready -->
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Crect x='7' y='7' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='17' y='7' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='7' y='17' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='17' y='17' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3C/svg%3E">
+
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script src="../js/i18n.js" defer></script>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800 antialiased">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" data-i18n="a11y.skip">Перейти до вмісту</a>
+
+  <header class="fixed inset-x-0 top-0 z-50 h-16 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex h-full max-w-6xl items-center justify-between px-4 sm:px-6">
+      <a href="../index.html" aria-label="iGames — Intellectual Games" class="flex items-center gap-2 rounded-lg text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+        <svg class="h-7 w-7 flex-none text-blue-600 sm:h-8 sm:w-8" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" focusable="false">
+          <rect x="4" y="4" width="10" height="10" rx="2"/>
+          <rect x="18" y="4" width="10" height="10" rx="2"/>
+          <rect x="4" y="18" width="10" height="10" rx="2"/>
+          <rect x="18" y="18" width="10" height="10" rx="2"/>
+        </svg>
+        <span class="flex flex-col items-start">
+          <span class="text-lg font-bold leading-none text-gray-900">iGames</span>
+          <span class="mt-0.5 text-[10px] font-medium leading-none text-indigo-600">iNtellectual games</span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-6 lg:flex" aria-label="Основна навігація" data-i18n-aria-label="nav.primaryAria">
+        <ul class="flex items-center gap-6">
+          <li>
+            <a href="../index.html#about" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.about">Про проєкт</a>
+          </li>
+          <li>
+            <a href="./" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.docs">Документація</a>
+          </li>
+          <li>
+            <a href="../leaderboard/" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.leaderboard">Рейтинг</a>
+          </li>
+          <li>
+            <a href="../changelog/" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.changelog">Оновлення</a>
+          </li>
+        </ul>
+        <div class="flex items-center gap-3">
+          <div class="inline-flex items-center rounded-lg border border-gray-200 bg-gray-50 p-0.5" role="group" aria-label="Мова інтерфейсу" data-i18n-aria-label="lang.groupAria">
+            <button type="button" data-lang-btn="uk" lang="uk" aria-label="Українська" aria-pressed="true" class="rounded-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">UA</button>
+            <button type="button" data-lang-btn="en" lang="en" aria-label="English" aria-pressed="false" class="rounded-md px-2 py-1 text-xs font-semibold text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">EN</button>
+          </div>
+          <a href="../index.html#download" class="whitespace-nowrap rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"><span data-i18n="nav.download">Завантажити</span></a>
+        </div>
+      </nav>
+
+      <div class="flex items-center gap-2 lg:hidden">
+        <a href="../index.html#download" class="whitespace-nowrap rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"><span data-i18n="nav.download">Завантажити</span></a>
+        <details class="relative">
+          <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 [&::-webkit-details-marker]:hidden" aria-label="Відкрити головне меню" data-i18n-aria-label="nav.openMenuAria">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+              <path d="M4 7h16M4 12h16M4 17h16"/>
+            </svg>
+          </summary>
+          <div class="absolute right-0 mt-2 w-56 rounded-xl border border-gray-200 bg-white p-2 shadow-lg">
+            <nav aria-label="Мобільна навігація" data-i18n-aria-label="nav.mobileAria">
+              <ul class="flex flex-col">
+                <li>
+                  <a href="../index.html#about" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.about">Про проєкт</a>
+                </li>
+                <li>
+                  <a href="./" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.docs">Документація</a>
+                </li>
+                <li>
+                  <a href="../leaderboard/" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.leaderboard">Рейтинг</a>
+                </li>
+                <li>
+                  <a href="../changelog/" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.changelog">Оновлення</a>
+                </li>
+                <li class="mt-2 border-t border-gray-100 pt-2">
+                  <div class="flex items-center justify-between px-3 py-1">
+                    <span class="text-xs font-medium text-gray-500" data-i18n="nav.language">Мова</span>
+                    <div class="inline-flex items-center rounded-lg border border-gray-200 bg-gray-50 p-0.5" role="group" aria-label="Мова інтерфейсу" data-i18n-aria-label="lang.groupAria">
+                      <button type="button" data-lang-btn="uk" lang="uk" aria-label="Українська" aria-pressed="true" class="rounded-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">UA</button>
+                      <button type="button" data-lang-btn="en" lang="en" aria-label="English" aria-pressed="false" class="rounded-md px-2 py-1 text-xs font-semibold text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">EN</button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mt-2 border-t border-gray-100 pt-2">
+                  <a href="../index.html#download" class="block rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"><span data-i18n="nav.download">Завантажити</span></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="pt-24 pb-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+
+      <div class="max-w-3xl">
+        <p class="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-medium text-gray-600"
+           data-i18n="docs.eyebrow">Документація</p>
+        <h1 class="mt-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+            data-i18n="docs.title">Довідковий центр iGames</h1>
+        <p class="mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg"
+           data-i18n="docs.intro">Усе, що потрібно для впевненого старту: від встановлення клієнта до правил шашок, довгих нард і рейтингу ELO.</p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-10">
+
+        <aside class="lg:col-span-1">
+          <div class="lg:sticky lg:top-24">
+            <nav class="rounded-2xl border border-gray-200 bg-white p-3 shadow-sm"
+                 aria-labelledby="docs-contents-heading">
+              <p id="docs-contents-heading"
+                 class="px-3 pb-2 pt-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500"
+                 data-i18n="docs.contents">Зміст</p>
+              <ul class="space-y-1">
+                <li>
+                  <a href="#getting-started"
+                     class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                    <span class="text-[11px] font-semibold text-gray-500 group-hover:text-blue-600"
+                          aria-hidden="true">01</span>
+                    <span data-i18n="docs.gettingStarted.title">З чого почати</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#checkers"
+                     class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                    <span class="text-[11px] font-semibold text-gray-500 group-hover:text-blue-600"
+                          aria-hidden="true">02</span>
+                    <span data-i18n="docs.checkers.title">Класичні шашки 8х8</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#backgammon"
+                     class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                    <span class="text-[11px] font-semibold text-gray-500 group-hover:text-blue-600"
+                          aria-hidden="true">03</span>
+                    <span data-i18n="docs.backgammon.title">Довгі нарди</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#elo"
+                     class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                    <span class="text-[11px] font-semibold text-gray-500 group-hover:text-blue-600"
+                          aria-hidden="true">04</span>
+                    <span data-i18n="docs.elo.title">Рейтинг ELO</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </aside>
+
+        <div class="min-w-0 lg:col-span-3">
+          <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+            <div class="prose prose-gray mx-auto prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-gray-900 prose-h2:mt-0 prose-h2:text-2xl prose-h3:text-lg prose-p:text-gray-600 prose-p:leading-relaxed prose-li:text-gray-600 prose-li:leading-relaxed prose-a:font-medium prose-a:text-blue-600 prose-a:underline prose-a:underline-offset-2">
+
+              <section id="getting-started" class="scroll-mt-24" aria-labelledby="getting-started-heading">
+                <h2 id="getting-started-heading" data-i18n="docs.gettingStarted.title">З чого почати</h2>
+                <p data-i18n="docs.gettingStarted.body">iGames — це легкий клієнтський додаток для настільних ігор. Щоб почати, завантажте версію для своєї операційної системи, запустіть її та підключіться до глобальної екосистеми гравців.</p>
+                <ol>
+                  <li data-i18n="docs.gettingStarted.step1">Завантажте клієнт для Windows, Linux або macOS.</li>
+                  <li data-i18n="docs.gettingStarted.step2">Запустіть програму — вона підключиться до глобальної екосистеми iGames.</li>
+                  <li data-i18n="docs.gettingStarted.step3">Оберіть дисципліну та приєднуйтеся до лобі або кімнати.</li>
+                </ol>
+                <p><a href="../index.html#download" data-i18n="docs.gettingStarted.downloadLink">Завантажити клієнт для своєї ОС</a></p>
+              </section>
+
+              <section id="checkers" class="mt-12 scroll-mt-24 border-t border-gray-100 pt-10" aria-labelledby="checkers-heading">
+                <h2 id="checkers-heading" data-i18n="docs.checkers.title">Класичні шашки 8х8</h2>
+                <p data-i18n="docs.checkers.intro">Класичні шашки 8х8 — динамічна дисципліна на стандартній дошці 8×8. Тут важливі контроль діагоналей, темп і вміння бачити загрози не лише попереду, а й позаду.</p>
+                <h3 data-i18n="docs.checkers.setupTitle">Дошка та рух</h3>
+                <p data-i18n="docs.checkers.setupBody">Кожен гравець починає з 12 шашок на темних клітинках. Прості шашки рухаються по діагоналі вперед на одну клітинку, а взяття виконують стрибком через шашку суперника.</p>
+                <h3 data-i18n="docs.checkers.backwardTitle">Зворотні взяття</h3>
+                <p data-i18n="docs.checkers.backwardBody">Ключова особливість варіації: прості шашки можуть брати не лише вперед, а й назад. Тому клітинка позаду не є безпечною — прораховуйте зворотні загрози перед кожним ходом.</p>
+                <h3 data-i18n="docs.checkers.kingsTitle">Дальні «летючі» дамки</h3>
+                <p data-i18n="docs.checkers.kingsBody">Шашка, яка досягає останньої горизонталі, стає дамкою. Дамки рухаються та беруть на будь-яку відстань по діагоналі, якщо шлях вільний. Це відкриває «летючі» комбінації через усю дошку.</p>
+                <h3 data-i18n="docs.checkers.goalTitle">Мета партії</h3>
+                <p data-i18n="docs.checkers.goalBody">Перемагає гравець, який позбавляє суперника всіх шашок або можливості зробити хід. Уважність до зворотних взяттів і довгих діагоналей часто вирішує результат.</p>
+              </section>
+
+              <section id="backgammon" class="mt-12 scroll-mt-24 border-t border-gray-100 pt-10" aria-labelledby="backgammon-heading">
+                <h2 id="backgammon-heading" data-i18n="docs.backgammon.title">Довгі нарди</h2>
+                <p data-i18n="docs.backgammon.intro">Довгі нарди — це дисципліна для тих, хто любить довгі стратегії, контроль простору та точний розрахунок темпу. Усі 15 шашок починають поза дошкою, а партія будується навколо входу в дім, проведення шашок і зняття їх з дошки.</p>
+                <h3 data-i18n="docs.backgammon.placementTitle">Стратегічна розстановка</h3>
+                <p data-i18n="docs.backgammon.placementBody">Спочатку гравці вводять шашки у свою домашню чверть, а потім проводять їх по колу. Зайнятий суперником пункт блокує рух, тому важливо заздалегідь будувати власну структуру та залишати собі запасні маршрути.</p>
+                <h3 data-i18n="docs.backgammon.blockingTitle">Блокування та темп</h3>
+                <p data-i18n="docs.backgammon.blockingBody">У довгих нардах немає вибивання на бар: зайнятий пункт просто блокує прохід. Контролюйте входи до своєї домашньої чверті, створюйте щільні бар'єри та змушуйте суперника витрачати кидки на обхідні шляхи.</p>
+
+                <aside class="not-prose mt-6 rounded-xl border border-blue-100 bg-blue-50/60 p-4 sm:p-5"
+                       aria-labelledby="backgammon-dice-heading">
+                  <div class="flex items-start gap-3">
+                    <svg class="mt-0.5 h-5 w-5 flex-none text-blue-600" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                         stroke-linejoin="round" aria-hidden="true" focusable="false">
+                      <path d="M12 3 5 6v5c0 4.5 2.9 8.1 7 10 4.1-1.9 7-5.5 7-10V6l-7-3Z"/>
+                      <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                    <div>
+                      <h3 id="backgammon-dice-heading" class="text-sm font-semibold text-blue-900"
+                          data-i18n="docs.backgammon.diceTitle">100% серверна генерація кубиків</h3>
+                      <p class="mt-2 text-sm leading-relaxed text-blue-800"
+                         data-i18n="docs.backgammon.diceBody">Кидки кубиків генеруються виключно на сервері, а не в клієнті. Сервер є єдиним джерелом істини: він формує результат, перевіряє допустимі ходи та синхронізує стан партії для обох гравців. Клієнт лише відображає отримані дані, тому будь-які маніпуляції з кубиками на боці клієнта повністю виключені. Це гарантує 100% захищену та чесну гру для обох суперників.</p>
+                    </div>
+                  </div>
+                </aside>
+              </section>
+
+              <section id="elo" class="mt-12 scroll-mt-24 border-t border-gray-100 pt-10" aria-labelledby="elo-heading">
+                <h2 id="elo-heading" data-i18n="docs.elo.title">Рейтинг ELO</h2>
+                <p data-i18n="docs.elo.intro">ELO — це автоматична змагальна драбина iGames. Вона відображає поточний рівень гравця та динаміку його прогресу в кожній окремій дисципліні.</p>
+                <h3 data-i18n="docs.elo.kFactorTitle">K-фактор 32</h3>
+                <p data-i18n="docs.elo.kFactorBody">Після кожної рейтингової партії сервер застосовує стандартну формулу ELO з K-фактором 32. Кожен результат має відчутний вплив на рейтинг, а система швидко реагує на зміни результатів.</p>
+                <h3 data-i18n="docs.elo.floorTitle">Мінімальний рейтинг 100</h3>
+                <p data-i18n="docs.elo.floorBody">Рейтинг ніколи не опускається нижче 100. Навіть після серії поразок гравець зберігає базову позначку 100, тому драбина залишається мотивуючою.</p>
+                <h3 data-i18n="docs.elo.disciplinesTitle">Окремі дисципліни</h3>
+                <p data-i18n="docs.elo.disciplinesBody">Шахи, класичні шашки 8х8 та довгі нарди ведуть незалежні рейтинги. Успіхи в одній грі не змінюють рейтинг в іншій, тому кожна дисципліна має власну змагальну історію.</p>
+                <h3 data-i18n="docs.elo.transactionTitle">Транзакційний перерахунок</h3>
+                <p data-i18n="docs.elo.transactionBody">Результат партії, зміна рейтингу та запис в історію застосовуються сервером як одна узгоджена транзакція. Це виключає розбіжності між гравцями та втрату оновлень.</p>
+              </section>
+
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-gray-200 bg-white py-8">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
+      <div class="text-center sm:text-left">
+        <p class="text-sm text-gray-500">© 2026 iGames</p>
+      </div>
+
+      <nav aria-label="Навігація в нижній частині" data-i18n-aria-label="nav.footerAria">
+        <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          <li>
+            <a href="./" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.docs">Документація</a>
+          </li>
+          <li>
+            <a href="../leaderboard/" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.leaderboard">Рейтинг</a>
+          </li>
+          <li>
+            <a href="../changelog/" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.changelog">Оновлення</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

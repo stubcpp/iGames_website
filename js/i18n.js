@@ -58,7 +58,49 @@
       "about.card2Title": "Абсолютно чесна гра та відгуки",
       "about.card2Body": "Повне блокування обману. Усі ходи та кидки кубиків прораховуються на сервері, а вбудована система відгуків та скарг дозволяє оцінювати поведінку суперників після кожної партії.",
       "about.card3Title": "Повноцінний ігровий всесвіт",
-      "about.card3Body": "Шахи, динамічні класичні шашки 8х8 з можливістю бити назад і далекобійними дамками, а також довгі нарди. Усередині — особистий профіль із перемогами, нічиїми, поразками та рейтингом ELO, живі чати кімнат і загального лобі, статистика сервера з лічильниками онлайн-гравців та активних партій, а також тренування з ботами різної складності."
+      "about.card3Body": "Шахи, динамічні класичні шашки 8х8 з можливістю бити назад і далекобійними дамками, а також довгі нарди. Усередині — особистий профіль із перемогами, нічиїми, поразками та рейтингом ELO, живі чати кімнат і загального лобі, статистика сервера з лічильниками онлайн-гравців та активних партій, а також тренування з ботами різної складності.",
+      "docs.meta.title": "Документація — iGames",
+      "docs.meta.description": "Дізнайтеся, як почати грати в iGames, вивчіть правила класичних шашок 8х8 і довгих нард та розберіться, як працює рейтинг ELO.",
+      "docs.meta.ogTitle": "Документація iGames",
+      "docs.meta.ogDescription": "Правила, рейтинг ELO та практичні поради для впевненого старту в iGames.",
+      "docs.eyebrow": "Документація",
+      "docs.title": "Довідковий центр iGames",
+      "docs.intro": "Усе, що потрібно для впевненого старту: від встановлення клієнта до правил шашок, довгих нард і рейтингу ELO.",
+      "docs.contents": "Зміст",
+      "docs.gettingStarted.title": "З чого почати",
+      "docs.gettingStarted.body": "iGames — це легкий клієнтський додаток для настільних ігор. Щоб почати, завантажте версію для своєї операційної системи, запустіть її та підключіться до глобальної екосистеми гравців.",
+      "docs.gettingStarted.step1": "Завантажте клієнт для Windows, Linux або macOS.",
+      "docs.gettingStarted.step2": "Запустіть програму — вона підключиться до глобальної екосистеми iGames.",
+      "docs.gettingStarted.step3": "Оберіть дисципліну та приєднуйтеся до лобі або кімнати.",
+      "docs.gettingStarted.downloadLink": "Завантажити клієнт для своєї ОС",
+      "docs.checkers.title": "Класичні шашки 8х8",
+      "docs.checkers.intro": "Класичні шашки 8х8 — динамічна дисципліна на стандартній дошці 8×8. Тут важливі контроль діагоналей, темп і вміння бачити загрози не лише попереду, а й позаду.",
+      "docs.checkers.setupTitle": "Дошка та рух",
+      "docs.checkers.setupBody": "Кожен гравець починає з 12 шашок на темних клітинках. Прості шашки рухаються по діагоналі вперед на одну клітинку, а взяття виконують стрибком через шашку суперника.",
+      "docs.checkers.backwardTitle": "Зворотні взяття",
+      "docs.checkers.backwardBody": "Ключова особливість варіації: прості шашки можуть брати не лише вперед, а й назад. Тому клітинка позаду не є безпечною — прораховуйте зворотні загрози перед кожним ходом.",
+      "docs.checkers.kingsTitle": "Дальні «летючі» дамки",
+      "docs.checkers.kingsBody": "Шашка, яка досягає останньої горизонталі, стає дамкою. Дамки рухаються та беруть на будь-яку відстань по діагоналі, якщо шлях вільний. Це відкриває «летючі» комбінації через усю дошку.",
+      "docs.checkers.goalTitle": "Мета партії",
+      "docs.checkers.goalBody": "Перемагає гравець, який позбавляє суперника всіх шашок або можливості зробити хід. Уважність до зворотних взяттів і довгих діагоналей часто вирішує результат.",
+      "docs.backgammon.title": "Довгі нарди",
+      "docs.backgammon.intro": "Довгі нарди — це дисципліна для тих, хто любить довгі стратегії, контроль простору та точний розрахунок темпу. Усі 15 шашок починають поза дошкою, а партія будується навколо входу в дім, проведення шашок і зняття їх з дошки.",
+      "docs.backgammon.placementTitle": "Стратегічна розстановка",
+      "docs.backgammon.placementBody": "Спочатку гравці вводять шашки у свою домашню чверть, а потім проводять їх по колу. Зайнятий суперником пункт блокує рух, тому важливо заздалегідь будувати власну структуру та залишати собі запасні маршрути.",
+      "docs.backgammon.blockingTitle": "Блокування та темп",
+      "docs.backgammon.blockingBody": "У довгих нардах немає вибивання на бар: зайнятий пункт просто блокує прохід. Контролюйте входи до своєї домашньої чверті, створюйте щільні бар'єри та змушуйте суперника витрачати кидки на обхідні шляхи.",
+      "docs.backgammon.diceTitle": "100% серверна генерація кубиків",
+      "docs.backgammon.diceBody": "Кидки кубиків генеруються виключно на сервері, а не в клієнті. Сервер є єдиним джерелом істини: він формує результат, перевіряє допустимі ходи та синхронізує стан партії для обох гравців. Клієнт лише відображає отримані дані, тому будь-які маніпуляції з кубиками на боці клієнта повністю виключені. Це гарантує 100% захищену та чесну гру для обох суперників.",
+      "docs.elo.title": "Рейтинг ELO",
+      "docs.elo.intro": "ELO — це автоматична змагальна драбина iGames. Вона відображає поточний рівень гравця та динаміку його прогресу в кожній окремій дисципліні.",
+      "docs.elo.kFactorTitle": "K-фактор 32",
+      "docs.elo.kFactorBody": "Після кожної рейтингової партії сервер застосовує стандартну формулу ELO з K-фактором 32. Кожен результат має відчутний вплив на рейтинг, а система швидко реагує на зміни результатів.",
+      "docs.elo.floorTitle": "Мінімальний рейтинг 100",
+      "docs.elo.floorBody": "Рейтинг ніколи не опускається нижче 100. Навіть після серії поразок гравець зберігає базову позначку 100, тому драбина залишається мотивуючою.",
+      "docs.elo.disciplinesTitle": "Окремі дисципліни",
+      "docs.elo.disciplinesBody": "Шахи, класичні шашки 8х8 та довгі нарди ведуть незалежні рейтинги. Успіхи в одній грі не змінюють рейтинг в іншій, тому кожна дисципліна має власну змагальну історію.",
+      "docs.elo.transactionTitle": "Транзакційний перерахунок",
+      "docs.elo.transactionBody": "Результат партії, зміна рейтингу та запис в історію застосовуються сервером як одна узгоджена транзакція. Це виключає розбіжності між гравцями та втрату оновлень."
     },
     en: {
       "meta.title": "iGames — Modern Platform for Intellectual Games",
@@ -112,7 +154,49 @@
       "about.card2Title": "Strict Fair Play & Player Reviews",
       "about.card2Body": "Zero tolerance for cheating. All moves and dice choices are computed strictly on the server, while our post-match feedback system allows you to review your opponent's sportsmanship.",
       "about.card3Title": "Feature-Rich Gaming Universe",
-      "about.card3Body": "Chess, dynamic Classic 8x8 Checkers with backward captures and long-range flying kings, plus Long Backgammon. Inside, you get a personal profile with wins, draws, losses and ELO, live room and global lobby chats, server statistics with online player counters and active game trackers, and practice matches against AI bots at adjustable difficulty."
+      "about.card3Body": "Chess, dynamic Classic 8x8 Checkers with backward captures and long-range flying kings, plus Long Backgammon. Inside, you get a personal profile with wins, draws, losses and ELO, live room and global lobby chats, server statistics with online player counters and active game trackers, and practice matches against AI bots at adjustable difficulty.",
+      "docs.meta.title": "Documentation — iGames",
+      "docs.meta.description": "Learn how to get started with iGames, read the rules for Classic 8x8 Checkers and Long Backgammon, and understand how the ELO rating works.",
+      "docs.meta.ogTitle": "iGames Documentation",
+      "docs.meta.ogDescription": "Rules, ELO ratings, and practical guidance for getting started with iGames.",
+      "docs.eyebrow": "Documentation",
+      "docs.title": "iGames Documentation",
+      "docs.intro": "Everything you need for a confident start: from installing the client to the rules of Checkers, Long Backgammon, and the ELO rating.",
+      "docs.contents": "Contents",
+      "docs.gettingStarted.title": "Getting Started",
+      "docs.gettingStarted.body": "iGames is a lightweight desktop client for board games. To get started, download the version for your operating system, launch it, and connect to the global player ecosystem.",
+      "docs.gettingStarted.step1": "Download the client for Windows, Linux, or macOS.",
+      "docs.gettingStarted.step2": "Launch the app and let it connect to the global iGames ecosystem.",
+      "docs.gettingStarted.step3": "Choose a discipline and join the lobby or a room.",
+      "docs.gettingStarted.downloadLink": "Download the client for your OS",
+      "docs.checkers.title": "Classic 8x8 Checkers",
+      "docs.checkers.intro": "Classic 8x8 Checkers is a dynamic discipline played on a standard 8×8 board. Diagonal control, tempo, and the ability to spot threats both ahead and behind are essential.",
+      "docs.checkers.setupTitle": "Board and movement",
+      "docs.checkers.setupBody": "Each player starts with 12 pieces on the dark squares. Ordinary pieces move one square diagonally forward, and captures are made by jumping over an opponent's piece.",
+      "docs.checkers.backwardTitle": "Backward captures",
+      "docs.checkers.backwardBody": "A key feature of this variation: ordinary pieces can capture backward as well as forward. A square behind your piece is never automatically safe, so calculate backward threats before every move.",
+      "docs.checkers.kingsTitle": "Long-range flying kings",
+      "docs.checkers.kingsBody": "A piece that reaches the far rank becomes a king. Kings move and capture at any distance along a diagonal, provided the path is clear. This enables long-range “flying” combinations across the whole board.",
+      "docs.checkers.goalTitle": "Objective",
+      "docs.checkers.goalBody": "You win by leaving your opponent with no pieces or no legal move. Attention to backward captures and long diagonals often decides the game.",
+      "docs.backgammon.title": "Long Backgammon",
+      "docs.backgammon.intro": "Long Backgammon rewards long-term strategy, spatial control, and precise tempo calculation. All 15 checkers start off the board, and the game revolves around entering your home board, racing around, and bearing off.",
+      "docs.backgammon.placementTitle": "Strategic placement",
+      "docs.backgammon.placementBody": "Players first enter their checkers into their home board, then move them around the board. A point occupied by the opponent blocks movement, so build your own structure early and keep backup routes open.",
+      "docs.backgammon.blockingTitle": "Blocking and tempo",
+      "docs.backgammon.blockingBody": "Long Backgammon has no hitting or bar: an occupied point simply blocks the path. Control the entry points to your home board, create compact barriers, and force your opponent to spend rolls on detours.",
+      "docs.backgammon.diceTitle": "100% server-authoritative dice",
+      "docs.backgammon.diceBody": "Dice rolls are generated exclusively on the server, never in the client. The server is the single source of truth: it produces the result, validates legal moves, and synchronizes the game state for both players. The client only displays the received data, so client-side dice manipulation is completely eliminated. This guarantees 100% secure and fair play for both opponents.",
+      "docs.elo.title": "ELO Rating",
+      "docs.elo.intro": "ELO is iGames' automated competitive ladder. It reflects a player's current level and progress in each individual discipline.",
+      "docs.elo.kFactorTitle": "K-factor 32",
+      "docs.elo.kFactorBody": "After every rated game, the server applies the standard ELO formula with a K-factor of 32. Each result has a meaningful impact on your rating, and the system responds quickly to changes in results.",
+      "docs.elo.floorTitle": "Rating floor of 100",
+      "docs.elo.floorBody": "A rating never falls below 100. Even after a losing streak, a player keeps the baseline of 100, so the ladder remains motivating.",
+      "docs.elo.disciplinesTitle": "Separate disciplines",
+      "docs.elo.disciplinesBody": "Chess, Classic 8x8 Checkers, and Long Backgammon each maintain an independent rating. Success in one game does not change your rating in another, so every discipline has its own competitive history.",
+      "docs.elo.transactionTitle": "Transactional updates",
+      "docs.elo.transactionBody": "The game result, rating change, and history record are applied by the server as one consistent transaction. This prevents discrepancies between players and lost updates."
     }
   };
 
@@ -178,8 +262,10 @@
       }
     }
 
-    if (typeof dict["meta.title"] === "string") {
-      document.title = dict["meta.title"];
+    var titleNode = document.querySelector("title[data-i18n]");
+    var titleKey = titleNode ? titleNode.getAttribute("data-i18n") : "meta.title";
+    if (typeof dict[titleKey] === "string") {
+      document.title = dict[titleKey];
     }
 
     var langButtons = document.querySelectorAll("[data-lang-btn]");
