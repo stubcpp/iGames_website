@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title data-i18n="docs.meta.title">Документація — iGames</title>
-  <meta name="description" content="Дізнайтеся, як почати грати в iGames, вивчіть правила класичних шашок 8х8 і довгих нард та розберіться, як працює рейтинг ELO." data-i18n-content="docs.meta.description">
+  <meta name="description" content="Дізнайтеся, як почати грати в iGames, вивчіть правила шахів, класичних шашок 8х8 і довгих нард та розберіться, як працює рейтинг ELO." data-i18n-content="docs.meta.description">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#ffffff">
   <meta name="color-scheme" content="light">
 
   <meta property="og:title" content="Документація iGames" data-i18n-content="docs.meta.ogTitle">
-  <meta property="og:description" content="Правила, рейтинг ELO та практичні поради для впевненого старту в iGames." data-i18n-content="docs.meta.ogDescription">
+  <meta property="og:description" content="Правила шахів, шашок і довгих нард, рейтинг ELO та практичні поради для впевненого старту в iGames." data-i18n-content="docs.meta.ogDescription">
   <meta property="og:locale" content="uk_UA" data-i18n-content="meta.ogLocale">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="iGames">
@@ -26,7 +26,11 @@
 
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" data-i18n="a11y.skip">Перейти до вмісту</a>
 
-  <header class="fixed inset-x-0 top-0 z-50 h-16 border-b border-gray-200 bg-white/95 backdrop-blur">
+  <div class="fixed inset-x-0 top-0 z-40 flex h-12 items-center justify-center border-b border-amber-200 bg-amber-50 px-4 text-center">
+    <p class="text-[11px] leading-4 text-amber-900" data-i18n="banner.beta">🚀 Сервіс працює в режимі бета-тестування. Поточна адреса сервера за замовчуванням: ws://localhost:8080</p>
+  </div>
+
+  <header class="fixed inset-x-0 top-12 z-50 h-16 border-b border-gray-200 bg-white/95 backdrop-blur">
     <div class="mx-auto flex h-full max-w-6xl items-center justify-between px-4 sm:px-6">
       <a href="../index.html" aria-label="iGames — Intellectual Games" class="flex items-center gap-2 rounded-lg text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
         <svg class="h-7 w-7 flex-none text-blue-600 sm:h-8 sm:w-8" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" focusable="false">
@@ -47,7 +51,7 @@
             <a href="../index.html#about" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.about">Про проєкт</a>
           </li>
           <li>
-            <a href="./" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.docs">Документація</a>
+            <a href="index.html" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.docs">Документація</a>
           </li>
           <li>
             <a href="../leaderboard/" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.leaderboard">Рейтинг</a>
@@ -80,7 +84,7 @@
                   <a href="../index.html#about" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.about">Про проєкт</a>
                 </li>
                 <li>
-                  <a href="./" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.docs">Документація</a>
+                  <a href="index.html" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.docs">Документація</a>
                 </li>
                 <li>
                   <a href="../leaderboard/" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.leaderboard">Рейтинг</a>
@@ -108,7 +112,7 @@
     </div>
   </header>
 
-  <main id="main" class="pt-24 pb-20">
+  <main id="main" class="pt-36 pb-20">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
 
       <div class="max-w-3xl">
@@ -117,13 +121,13 @@
         <h1 class="mt-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
             data-i18n="docs.title">Довідковий центр iGames</h1>
         <p class="mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg"
-           data-i18n="docs.intro">Усе, що потрібно для впевненого старту: від встановлення клієнта до правил шашок, довгих нард і рейтингу ELO.</p>
+           data-i18n="docs.intro">Усе, що потрібно для впевненого старту: від встановлення клієнта до правил шахів, шашок, довгих нард і рейтингу ELO.</p>
       </div>
 
       <div class="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-10">
 
         <aside class="lg:col-span-1">
-          <div class="lg:sticky lg:top-24">
+          <div class="lg:sticky lg:top-36">
             <nav class="rounded-2xl border border-gray-200 bg-white p-3 shadow-sm"
                  aria-labelledby="docs-contents-heading">
               <p id="docs-contents-heading"
@@ -139,10 +143,18 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#checkers"
+                  <a href="#chess"
                      class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
                     <span class="text-[11px] font-semibold text-gray-500 group-hover:text-blue-600"
                           aria-hidden="true">02</span>
+                    <span data-i18n="docs.chess.title">Шахи</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#checkers"
+                     class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                    <span class="text-[11px] font-semibold text-gray-500 group-hover:text-blue-600"
+                          aria-hidden="true">03</span>
                     <span data-i18n="docs.checkers.title">Класичні шашки 8х8</span>
                   </a>
                 </li>
@@ -150,7 +162,7 @@
                   <a href="#backgammon"
                      class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
                     <span class="text-[11px] font-semibold text-gray-500 group-hover:text-blue-600"
-                          aria-hidden="true">03</span>
+                          aria-hidden="true">04</span>
                     <span data-i18n="docs.backgammon.title">Довгі нарди</span>
                   </a>
                 </li>
@@ -158,7 +170,7 @@
                   <a href="#elo"
                      class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
                     <span class="text-[11px] font-semibold text-gray-500 group-hover:text-blue-600"
-                          aria-hidden="true">04</span>
+                          aria-hidden="true">05</span>
                     <span data-i18n="docs.elo.title">Рейтинг ELO</span>
                   </a>
                 </li>
@@ -169,9 +181,9 @@
 
         <div class="min-w-0 lg:col-span-3">
           <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
-            <div class="prose prose-gray mx-auto prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-gray-900 prose-h2:mt-0 prose-h2:text-2xl prose-h3:text-lg prose-p:text-gray-600 prose-p:leading-relaxed prose-li:text-gray-600 prose-li:leading-relaxed prose-a:font-medium prose-a:text-blue-600 prose-a:underline prose-a:underline-offset-2">
+            <div class="prose prose-gray mx-auto prose-headings:scroll-mt-36 prose-headings:font-semibold prose-headings:text-gray-900 prose-h2:mt-0 prose-h2:text-2xl prose-h3:text-lg prose-p:text-gray-600 prose-p:leading-relaxed prose-li:text-gray-600 prose-li:leading-relaxed prose-a:font-medium prose-a:text-blue-600 prose-a:underline prose-a:underline-offset-2">
 
-              <section id="getting-started" class="scroll-mt-24" aria-labelledby="getting-started-heading">
+              <section id="getting-started" class="scroll-mt-36" aria-labelledby="getting-started-heading">
                 <h2 id="getting-started-heading" data-i18n="docs.gettingStarted.title">З чого почати</h2>
                 <p data-i18n="docs.gettingStarted.body">iGames — це легкий клієнтський додаток для настільних ігор. Щоб почати, завантажте версію для своєї операційної системи, запустіть її та підключіться до глобальної екосистеми гравців.</p>
                 <ol>
@@ -180,9 +192,43 @@
                   <li data-i18n="docs.gettingStarted.step3">Оберіть дисципліну та приєднуйтеся до лобі або кімнати.</li>
                 </ol>
                 <p><a href="../index.html#download" data-i18n="docs.gettingStarted.downloadLink">Завантажити клієнт для своєї ОС</a></p>
+
+                <div class="not-prose mt-6 grid gap-4 sm:grid-cols-2">
+                  <figure>
+                    <img src="../images/login-screen.png" width="500" height="668" loading="lazy" decoding="async"
+                         alt="Вікно входу до клієнта iGames із полями логіна та пароля."
+                         data-i18n-alt="docs.gettingStarted.loginAlt"
+                         class="block h-auto w-full rounded-xl border border-gray-200 bg-white shadow-sm">
+                    <figcaption class="mt-2 text-xs text-gray-500" data-i18n="docs.gettingStarted.loginCaption">Вхід до облікового запису</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="../images/register-screen.png" width="500" height="668" loading="lazy" decoding="async"
+                         alt="Вікно реєстрації iGames із полями логіна, пароля, підтвердження пароля та email."
+                         data-i18n-alt="docs.gettingStarted.registerAlt"
+                         class="block h-auto w-full rounded-xl border border-gray-200 bg-white shadow-sm">
+                    <figcaption class="mt-2 text-xs text-gray-500" data-i18n="docs.gettingStarted.registerCaption">Створення облікового запису</figcaption>
+                  </figure>
+                </div>
+
+                <h3 data-i18n="docs.gettingStarted.serverTitle">Налаштування сервера</h3>
+                <p data-i18n="docs.gettingStarted.serverBody">Перед підключенням відкрийте вкладку «Налаштування сервера». За замовчуванням клієнт використовує ws://localhost:8080. Для віддаленого середовища вкажіть адресу та порт сервера й збережіть налаштування.</p>
+                <div class="not-prose mx-auto mt-5 max-w-sm">
+                  <figure>
+                    <img src="../images/server-settings.png" width="500" height="668" loading="lazy" decoding="async"
+                         alt="Вікно налаштувань сервера iGames із полями адреси localhost, порту 8080 та прапорцем запам'ятовування."
+                         data-i18n-alt="docs.gettingStarted.serverAlt"
+                         class="block h-auto w-full rounded-xl border border-gray-200 bg-white shadow-sm">
+                    <figcaption class="mt-2 text-xs text-gray-500" data-i18n="docs.gettingStarted.serverCaption">Підключення до локального або віддаленого сервера</figcaption>
+                  </figure>
+                </div>
               </section>
 
-              <section id="checkers" class="mt-12 scroll-mt-24 border-t border-gray-100 pt-10" aria-labelledby="checkers-heading">
+              <section id="chess" class="mt-12 scroll-mt-36 border-t border-gray-100 pt-10" aria-labelledby="chess-heading">
+                <h2 id="chess-heading" data-i18n="docs.chess.title">Шахи</h2>
+                <p data-i18n="docs.chess.body">Класичні Шахи — Гра королів. Елітна дисципліна, яка вимагає глибокого стратегічного мислення, тактичної пильності та вміння контролювати центр дошки. Повна відповідність правил ФІДЕ, включаючи рокіровку, взяття на проході та автоматичну фіксацію нічиєї (пат, триразове повторення позиції).</p>
+              </section>
+
+              <section id="checkers" class="mt-12 scroll-mt-36 border-t border-gray-100 pt-10" aria-labelledby="checkers-heading">
                 <h2 id="checkers-heading" data-i18n="docs.checkers.title">Класичні шашки 8х8</h2>
                 <p data-i18n="docs.checkers.intro">Класичні шашки 8х8 — динамічна дисципліна на стандартній дошці 8×8. Тут важливі контроль діагоналей, темп і вміння бачити загрози не лише попереду, а й позаду.</p>
                 <h3 data-i18n="docs.checkers.setupTitle">Дошка та рух</h3>
@@ -195,7 +241,7 @@
                 <p data-i18n="docs.checkers.goalBody">Перемагає гравець, який позбавляє суперника всіх шашок або можливості зробити хід. Уважність до зворотних взяттів і довгих діагоналей часто вирішує результат.</p>
               </section>
 
-              <section id="backgammon" class="mt-12 scroll-mt-24 border-t border-gray-100 pt-10" aria-labelledby="backgammon-heading">
+              <section id="backgammon" class="mt-12 scroll-mt-36 border-t border-gray-100 pt-10" aria-labelledby="backgammon-heading">
                 <h2 id="backgammon-heading" data-i18n="docs.backgammon.title">Довгі нарди</h2>
                 <p data-i18n="docs.backgammon.intro">Довгі нарди — це дисципліна для тих, хто любить довгі стратегії, контроль простору та точний розрахунок темпу. Усі 15 шашок починають поза дошкою, а партія будується навколо входу в дім, проведення шашок і зняття їх з дошки.</p>
                 <h3 data-i18n="docs.backgammon.placementTitle">Стратегічна розстановка</h3>
@@ -222,9 +268,25 @@
                 </aside>
               </section>
 
-              <section id="elo" class="mt-12 scroll-mt-24 border-t border-gray-100 pt-10" aria-labelledby="elo-heading">
+              <section id="elo" class="mt-12 scroll-mt-36 border-t border-gray-100 pt-10" aria-labelledby="elo-heading">
                 <h2 id="elo-heading" data-i18n="docs.elo.title">Рейтинг ELO</h2>
                 <p data-i18n="docs.elo.intro">ELO — це автоматична змагальна драбина iGames. Вона відображає поточний рівень гравця та динаміку його прогресу в кожній окремій дисципліні.</p>
+                <div class="not-prose mt-6 space-y-4">
+                  <figure>
+                    <img src="../images/game-profile.png" width="1275" height="758" loading="lazy" decoding="async"
+                         alt="Вікно профілю гри iGames із налаштуваннями шахової партії; ліворуч видно рейтинги шахів, шашок і нард."
+                         data-i18n-alt="docs.elo.gameProfileAlt"
+                         class="block h-auto w-full rounded-xl border border-gray-200 bg-white shadow-sm">
+                    <figcaption class="mt-2 text-xs text-gray-500" data-i18n="docs.elo.gameProfileCaption">Профіль гри: налаштування та рейтинги дисциплін</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="../images/gamer-profile.png" width="1277" height="769" loading="lazy" decoding="async"
+                         alt="Вікно профілю гравця iGames з ім'ям і контактними даними; ліворуч видно рейтинги дисциплін."
+                         data-i18n-alt="docs.elo.gamerProfileAlt"
+                         class="block h-auto w-full rounded-xl border border-gray-200 bg-white shadow-sm">
+                    <figcaption class="mt-2 text-xs text-gray-500" data-i18n="docs.elo.gamerProfileCaption">Профіль гравця: обліковий запис і рейтинги</figcaption>
+                  </figure>
+                </div>
                 <h3 data-i18n="docs.elo.kFactorTitle">K-фактор 32</h3>
                 <p data-i18n="docs.elo.kFactorBody">Після кожної рейтингової партії сервер застосовує стандартну формулу ELO з K-фактором 32. Кожен результат має відчутний вплив на рейтинг, а система швидко реагує на зміни результатів.</p>
                 <h3 data-i18n="docs.elo.floorTitle">Мінімальний рейтинг 100</h3>
@@ -251,7 +313,7 @@
       <nav aria-label="Навігація в нижній частині" data-i18n-aria-label="nav.footerAria">
         <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <li>
-            <a href="./" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.docs">Документація</a>
+            <a href="index.html" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.docs">Документація</a>
           </li>
           <li>
             <a href="../leaderboard/" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.leaderboard">Рейтинг</a>
