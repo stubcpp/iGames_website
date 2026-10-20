@@ -10,17 +10,20 @@
   <meta name="color-scheme" content="light">
 
   <meta property="og:title" content="iGames — Сучасна платформа інтелектуальних ігор" data-i18n-content="meta.ogTitle">
-  <meta property="og:description" content="Грай у шахи, класичні шашки 8х8 та довгі нарди у блискавичному додатку. Серверний захист гарантує 100% чесну гру без читерів." data-i18n-content="meta.ogDescription">
+  <meta property="og:description" content="Грай у шахи, класичні шашки та довгі нарди в блискавичному додатку для комп'ютера з надійним захистом від читерів." data-i18n-content="meta.ogDescription">
+  <meta property="og:image" content="https://github.io">
+  <meta property="og:url" content="https://github.io">
   <meta property="og:locale" content="uk_UA" data-i18n-content="meta.ogLocale">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="iGames">
   <!-- TODO: add canonical URL when domain is known -->
-  <!-- TODO: add og:url and og:image when domain and assets are ready -->
+  <!-- TODO: replace placeholder og:image and og:url with a real social preview asset and production URL -->
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Crect x='7' y='7' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='17' y='7' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='7' y='17' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='17' y='17' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3C/svg%3E">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="js/i18n.js" defer></script>
+  <script src="js/share.js" defer></script>
   <style>
     #download-menu:not([hidden]) {
       animation: download-menu-in 160ms ease-out;
@@ -378,8 +381,30 @@
               </div>
             </div>
           </div>
-          <a href="#download" class="inline-flex w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:w-auto"
-             data-i18n="nav.download">Завантажити</a>
+          <div class="relative mt-6 flex flex-col gap-10 sm:mt-4 sm:flex-row sm:gap-3 sm:items-center lg:mt-0 lg:flex-none">
+            <a href="#download" class="inline-flex w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:w-auto"
+               data-i18n="nav.download">Завантажити</a>
+            <div class="relative w-full sm:w-auto">
+              <span id="share-toast" data-share-toast role="status" aria-live="polite" aria-atomic="true" aria-hidden="true"
+                    class="pointer-events-none absolute bottom-full right-0 mb-2 inline-flex translate-y-1 items-center gap-1.5 whitespace-nowrap rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-800 opacity-0 shadow-sm transition duration-300 ease-out motion-reduce:transition-none">
+                <svg class="h-3.5 w-3.5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <path d="m5 13 4 4L19 7"/>
+                </svg>
+                <span data-i18n="share.copied">Посилання скопійовано!</span>
+              </span>
+              <button type="button" data-share-button data-share-url="https://github.io"
+                      class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-blue-200 bg-white px-5 py-3 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:w-auto">
+                <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <circle cx="18" cy="5" r="3"/>
+                  <circle cx="6" cy="12" r="3"/>
+                  <circle cx="18" cy="19" r="3"/>
+                  <path d="m8.6 10.5 6.8-4"/>
+                  <path d="m8.6 13.5 6.8 4"/>
+                </svg>
+                <span data-i18n="share.button">Поділитися сайтом</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
