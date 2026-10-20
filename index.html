@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="uk" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>iGames — Online Platform for Intellectual Board Games</title>
-  <meta name="description" content="iGames is a native C++17 &amp; wxWidgets desktop platform for online Chess, Checkers and Backgammon, featuring authoritarian server-side anti-cheat protection.">
+  <title data-i18n="meta.title">iGames — Сучасна платформа інтелектуальних ігор</title>
+  <meta name="description" content="Грай у шахи, класичні шашки 8х8 та довгі нарди у блискавичному додатку для комп'ютера. Серверний захист контролює кожен хід і гарантує чесну гру без читерів." data-i18n-content="meta.description">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#ffffff">
   <meta name="color-scheme" content="light">
 
-  <meta property="og:title" content="iGames — Online Platform for Intellectual Board Games">
-  <meta property="og:description" content="A native C++17 &amp; wxWidgets desktop platform for online Chess, Checkers and Backgammon, with authoritarian server-side anti-cheat protection.">
+  <meta property="og:title" content="iGames — Сучасна платформа інтелектуальних ігор" data-i18n-content="meta.ogTitle">
+  <meta property="og:description" content="Грай у шахи, класичні шашки 8х8 та довгі нарди у блискавичному додатку. Серверний захист гарантує 100% чесну гру без читерів." data-i18n-content="meta.ogDescription">
+  <meta property="og:locale" content="uk_UA" data-i18n-content="meta.ogLocale">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="iGames">
   <!-- TODO: add canonical URL when domain is known -->
@@ -19,10 +20,11 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Crect x='7' y='7' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='17' y='7' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='7' y='17' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='17' y='17' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3C/svg%3E">
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/i18n.js" defer></script>
 </head>
 <body class="font-sans bg-white text-gray-800 antialiased">
 
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">Skip to content</a>
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" data-i18n="a11y.skip">Перейти до вмісту</a>
 
   <header class="fixed inset-x-0 top-0 z-50 h-16 border-b border-gray-200 bg-white/95 backdrop-blur">
     <div class="mx-auto flex h-full max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -36,49 +38,64 @@
         <span class="text-lg font-semibold tracking-tight">iGames</span>
       </a>
 
-      <nav class="hidden items-center gap-8 md:flex" aria-label="Primary navigation">
-        <ul class="flex items-center gap-8">
+      <nav class="hidden items-center gap-6 lg:flex" aria-label="Основна навігація" data-i18n-aria-label="nav.primaryAria">
+        <ul class="flex items-center gap-6">
           <li>
-            <a href="#about" class="rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">About</a>
+            <a href="#about" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.about">Про проєкт</a>
           </li>
           <li>
-            <a href="docs/" class="rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Docs</a>
+            <a href="docs/" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.docs">Документація</a>
           </li>
           <li>
-            <a href="leaderboard/" class="rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Leaderboard</a>
+            <a href="leaderboard/" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.leaderboard">Рейтинг</a>
           </li>
           <li>
-            <a href="changelog/" class="rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Changelog</a>
+            <a href="changelog/" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.changelog">Оновлення</a>
           </li>
         </ul>
-        <a href="#download" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Download</a>
+        <div class="flex items-center gap-3">
+          <div class="inline-flex items-center rounded-lg border border-gray-200 bg-gray-50 p-0.5" role="group" aria-label="Мова інтерфейсу" data-i18n-aria-label="lang.groupAria">
+            <button type="button" data-lang-btn="uk" lang="uk" aria-label="Українська" aria-pressed="true" class="rounded-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">UA</button>
+            <button type="button" data-lang-btn="en" lang="en" aria-label="English" aria-pressed="false" class="rounded-md px-2 py-1 text-xs font-semibold text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">EN</button>
+          </div>
+          <a href="#download" class="whitespace-nowrap rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"><span data-i18n="nav.download">Завантажити</span></a>
+        </div>
       </nav>
 
-      <div class="flex items-center gap-2 md:hidden">
-        <a href="#download" class="rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Download</a>
+      <div class="flex items-center gap-2 lg:hidden">
+        <a href="#download" class="whitespace-nowrap rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"><span data-i18n="nav.download">Завантажити</span></a>
         <details class="relative">
-          <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 [&::-webkit-details-marker]:hidden" aria-label="Open main menu">
+          <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 [&::-webkit-details-marker]:hidden" aria-label="Відкрити головне меню" data-i18n-aria-label="nav.openMenuAria">
             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
               <path d="M4 7h16M4 12h16M4 17h16"/>
             </svg>
           </summary>
           <div class="absolute right-0 mt-2 w-56 rounded-xl border border-gray-200 bg-white p-2 shadow-lg">
-            <nav aria-label="Mobile navigation">
+            <nav aria-label="Мобільна навігація" data-i18n-aria-label="nav.mobileAria">
               <ul class="flex flex-col">
                 <li>
-                  <a href="#about" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">About</a>
+                  <a href="#about" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.about">Про проєкт</a>
                 </li>
                 <li>
-                  <a href="docs/" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Docs</a>
+                  <a href="docs/" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.docs">Документація</a>
                 </li>
                 <li>
-                  <a href="leaderboard/" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Leaderboard</a>
+                  <a href="leaderboard/" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.leaderboard">Рейтинг</a>
                 </li>
                 <li>
-                  <a href="changelog/" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Changelog</a>
+                  <a href="changelog/" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.changelog">Оновлення</a>
                 </li>
                 <li class="mt-2 border-t border-gray-100 pt-2">
-                  <a href="#download" class="block rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Download</a>
+                  <div class="flex items-center justify-between px-3 py-1">
+                    <span class="text-xs font-medium text-gray-500" data-i18n="nav.language">Мова</span>
+                    <div class="inline-flex items-center rounded-lg border border-gray-200 bg-gray-50 p-0.5" role="group" aria-label="Мова інтерфейсу" data-i18n-aria-label="lang.groupAria">
+                      <button type="button" data-lang-btn="uk" lang="uk" aria-label="Українська" aria-pressed="true" class="rounded-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">UA</button>
+                      <button type="button" data-lang-btn="en" lang="en" aria-label="English" aria-pressed="false" class="rounded-md px-2 py-1 text-xs font-semibold text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">EN</button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mt-2 border-t border-gray-100 pt-2">
+                  <a href="#download" class="block rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"><span data-i18n="nav.download">Завантажити</span></a>
                 </li>
               </ul>
             </nav>
@@ -92,43 +109,43 @@
 
     <section class="px-4 py-20 sm:px-6 sm:py-28" aria-labelledby="hero-heading">
       <div class="mx-auto max-w-4xl text-center">
-        <p class="inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-600">
-          Native C++17 · wxWidgets
+        <p class="inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-600" data-i18n="hero.badge">
+          Інтелектуальні ігри
         </p>
 
-        <h1 id="hero-heading" class="mt-6 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-          iGames — Online Platform for Intellectual Board Games (<span class="text-blue-600">Chess</span>, <span class="text-blue-600">Checkers</span>, <span class="text-blue-600">Backgammon</span>)
+        <h1 id="hero-heading" class="mt-6 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl md:text-5xl lg:text-6xl">
+          <span class="text-blue-600">iGames</span> <span data-i18n="hero.titleRest">— Сучасна платформа інтелектуальних ігор</span>
         </h1>
 
-        <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg">
-          A native, high-performance C++17 &amp; wxWidgets desktop application for Chess, Checkers and Backgammon, with authoritarian server-side anti-cheat protection.
+        <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg" data-i18n="hero.subtitle">
+          Грай у шахи, класичні шашки 8х8 та довгі нарди у блискавичному додатку для вашого комп'ютера. Наш надійний серверний захист повністю контролює правила та забезпечує 100% чесну гру без читерів.
         </p>
 
         <!-- TODO: replace placeholder download paths with real release asset URLs -->
         <div id="download" class="mt-10 scroll-mt-20">
           <div class="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <a href="downloads/igames-windows-x64.zip" class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+            <a href="downloads/igames-windows-x64.zip" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:text-base">
               <svg class="h-5 w-5 flex-none" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
                 <path d="M3 5.5 10.5 4.5v7H3v-6Zm0 13 7.5 1v-7H3v6ZM11.5 4.3 21 3v8.5h-9.5v-7.2Zm0 15.4L21 21v-8.5h-9.5v7.2Z"/>
               </svg>
-              <span>Download for Windows</span>
+              <span data-i18n="download.windows">Завантажити для Windows</span>
             </a>
 
-            <a href="downloads/igames-linux-x86_64.tar.gz" class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+            <a href="downloads/igames-linux-x86_64.tar.gz" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:text-base">
               <svg class="h-5 w-5 flex-none" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
                 <path d="M12 2c-1.9 0-3.1 1.5-3.1 3.4 0 1.3.4 2.2.4 3.2 0 .9-.5 1.5-1.3 2.5-1.2 1.4-2.3 3.1-2.3 4.7 0 .6.1 1.1.3 1.6-.6.5-1 1-1 1.5 0 1.1 1.4 1.9 3.1 1.9 1 0 1.9-.3 2.5-.8.4.1.9.2 1.4.2s1-.1 1.4-.2c.6.5 1.5.8 2.5.8 1.7 0 3.1-.8 3.1-1.9 0-.5-.4-1-1-1.5.2-.5.3-1 .3-1.6 0-1.6-1.1-3.3-2.3-4.7-.8-1-1.3-1.6-1.3-2.5 0-1 .4-1.9.4-3.2C15.1 3.5 13.9 2 12 2Zm-1.2 2.9c.4 0 .7.4.7.9s-.3.9-.7.9-.7-.4-.7-.9.3-.9.7-.9Zm2.4 0c.4 0 .7.4.7.9s-.3.9-.7.9-.7-.4-.7-.9.3-.9.7-.9ZM12 7.1l.8 1.5h-1.6l.8-1.5Zm-2.6 3.3c.3.4.4.9.3 1.3l-1.2-.4c.2-.3.5-.6.9-.9Zm5.2 0c.4.3.7.6.9.9l-1.2.4c-.1-.4 0-.9.3-1.3ZM9.2 16.4c-.5 0-.9.3-.9.7s.4.7.9.7.9-.3.9-.7-.4-.7-.9-.7Zm5.6 0c-.5 0-.9.3-.9.7s.4.7.9.7.9-.3.9-.7-.4-.7-.9-.7Z"/>
               </svg>
-              <span>Download for Linux</span>
+              <span data-i18n="download.linux">Завантажити для Linux</span>
             </a>
 
-            <a href="downloads/igames-macos-universal.dmg" class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+            <a href="downloads/igames-macos-universal.dmg" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:text-base">
               <svg class="h-5 w-5 flex-none" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
                 <path d="M16.4 12.7c0-2 1.6-3 1.7-3.1-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7-1.3 0-2.6.8-3.3 2-1.4 2.4-.4 6 1 8 .7 1 1.4 2 2.4 2 1 0 1.3-.6 2.5-.6s1.5.6 2.5.6c1 0 1.7-.9 2.3-1.9.7-1 1-2 1-2.1-.1 0-2.1-.8-2.1-3.4ZM14.5 6.6c.5-.7.9-1.6.8-2.6-.8 0-1.8.5-2.4 1.2-.5.6-1 1.6-.8 2.5.9.1 1.9-.4 2.4-1.1Z"/>
               </svg>
-              <span>Download for macOS</span>
+              <span data-i18n="download.macos">Завантажити для macOS</span>
             </a>
           </div>
-          <p class="mt-4 text-sm text-gray-500">Available for Windows, Linux and macOS.</p>
+          <p class="mt-4 text-sm text-gray-500" data-i18n="download.availability">Доступно для Windows, Linux та macOS</p>
         </div>
 
         <figure class="mt-16">
@@ -138,7 +155,7 @@
               <span class="h-2.5 w-2.5 rounded-full bg-gray-200" aria-hidden="true"></span>
               <span class="h-2.5 w-2.5 rounded-full bg-gray-200" aria-hidden="true"></span>
               <span class="h-2.5 w-2.5 rounded-full bg-gray-200" aria-hidden="true"></span>
-              <span class="ml-2 text-xs font-medium text-gray-500">iGames client</span>
+              <span class="ml-2 text-xs font-medium text-gray-500">iGames</span>
             </div>
             <div class="p-3 sm:p-5">
               <div class="flex aspect-[16/9] flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-gray-300 bg-gray-50 px-6 text-center">
@@ -147,12 +164,11 @@
                   <circle cx="8.5" cy="9.5" r="1.5"/>
                   <path d="m21 15-4.5-4.5L7 20"/>
                 </svg>
-                <p class="text-sm font-medium text-gray-500 sm:text-base">Application screenshot coming soon</p>
-                <p class="text-xs text-gray-500">Screenshot placeholder</p>
+                <p class="text-sm font-medium text-gray-500 sm:text-base" data-i18n="screenshot.placeholder">Скріншот додатка з'явиться незабаром</p>
               </div>
             </div>
           </div>
-          <figcaption class="sr-only">A future screenshot of the iGames desktop client, showing the main application window.</figcaption>
+          <figcaption class="mt-3 text-center text-xs font-medium text-gray-500" data-i18n="screenshot.title">Інтерфейс програми iGames (Intellectual Games)</figcaption>
         </figure>
       </div>
     </section>
@@ -160,20 +176,21 @@
     <section id="about" class="scroll-mt-20 border-t border-gray-100 bg-gray-50 py-20" aria-labelledby="about-heading">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center">
-          <h2 id="about-heading" class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">About iGames</h2>
-          <p class="mt-4 text-base leading-relaxed text-gray-600">
-            iGames is a native desktop platform for playing three classic board games online. It is built in C++17 with wxWidgets and backed by authoritarian server-side anti-cheat protection.
+          <h2 id="about-heading" class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl" data-i18n="about.title">Про проєкт iGames</h2>
+          <p class="mt-4 text-base leading-relaxed text-gray-600" data-i18n="about.description">
+            iGames — це легка та сучасна ігрова екосистема, створена для шанувальників інтелектуальних настільних ігор, де швидкість роботи поєднується з безкомпромісною чесністю онлайн-змагань.
           </p>
+          <p class="mt-3 text-sm font-medium text-blue-700" data-i18n="about.nameMeaning">Літера «i» в назві означає Intellectual Games — інтелектуальні ігри.</p>
         </div>
 
-        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           <article class="rounded-xl border border-gray-200 bg-white p-6">
             <svg class="h-6 w-6 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
               <path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/>
             </svg>
-            <h3 class="mt-4 text-base font-semibold text-gray-900">Native performance</h3>
-            <p class="mt-2 text-sm leading-relaxed text-gray-600">
-              Built in C++17 with wxWidgets for a fast native desktop experience.
+            <h3 class="mt-4 text-base font-semibold text-gray-900" data-i18n="about.card1Title">Миттєвий запуск та стабільність</h3>
+            <p class="mt-2 text-sm leading-relaxed text-gray-600" data-i18n="about.card1Body">
+              Забудьте про важкі сайти та затримки. Наш комп'ютерний додаток важить лічені мегабайти, запускається за секунду та бездоганно працює навіть на слабких ноутбуках.
             </p>
           </article>
 
@@ -182,22 +199,22 @@
               <path d="M12 3 4.5 6v5.5c0 4.3 3.1 8.1 7.5 9.5 4.4-1.4 7.5-5.2 7.5-9.5V6L12 3Z"/>
               <path d="m9 12 2 2 4-4"/>
             </svg>
-            <h3 class="mt-4 text-base font-semibold text-gray-900">Server-side anti-cheat</h3>
-            <p class="mt-2 text-sm leading-relaxed text-gray-600">
-              The platform applies authoritarian server-side anti-cheat protection.
+            <h3 class="mt-4 text-base font-semibold text-gray-900" data-i18n="about.card2Title">Абсолютно чесна гра та відгуки</h3>
+            <p class="mt-2 text-sm leading-relaxed text-gray-600" data-i18n="about.card2Body">
+              Повне блокування обману. Усі ходи та кидки кубиків прораховуються на сервері, а вбудована система відгуків та скарг дозволяє оцінювати поведінку суперників після кожної партії.
             </p>
           </article>
 
-          <article class="rounded-xl border border-gray-200 bg-white p-6">
+          <article class="rounded-xl border border-gray-200 bg-white p-6 md:col-span-2 xl:col-span-1">
             <svg class="h-6 w-6 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
               <rect x="3" y="3" width="7" height="7" rx="1.5"/>
               <rect x="14" y="3" width="7" height="7" rx="1.5"/>
               <rect x="3" y="14" width="7" height="7" rx="1.5"/>
               <rect x="14" y="14" width="7" height="7" rx="1.5"/>
             </svg>
-            <h3 class="mt-4 text-base font-semibold text-gray-900">Three classic games</h3>
-            <p class="mt-2 text-sm leading-relaxed text-gray-600">
-              Chess, Checkers and Backgammon in one platform.
+            <h3 class="mt-4 text-base font-semibold text-gray-900" data-i18n="about.card3Title">Повноцінний ігровий всесвіт</h3>
+            <p class="mt-2 text-sm leading-relaxed text-gray-600" data-i18n="about.card3Body">
+              Шахи, динамічні класичні шашки 8х8 з можливістю бити назад і далекобійними дамками, а також довгі нарди. Усередині — особистий профіль із перемогами, нічиїми, поразками та рейтингом ELO, живі чати кімнат і загального лобі, статистика сервера з лічильниками онлайн-гравців та активних партій, а також тренування з ботами різної складності.
             </p>
           </article>
         </div>
@@ -210,19 +227,18 @@
     <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
       <div class="text-center sm:text-left">
         <p class="text-sm text-gray-500">© 2026 iGames</p>
-        <p class="mt-1 text-xs text-gray-500">Built with C++17 &amp; wxWidgets</p>
       </div>
 
-      <nav aria-label="Footer navigation">
+      <nav aria-label="Навігація в нижній частині" data-i18n-aria-label="nav.footerAria">
         <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <li>
-            <a href="docs/" class="rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Docs</a>
+            <a href="docs/" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.docs">Документація</a>
           </li>
           <li>
-            <a href="leaderboard/" class="rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Leaderboard</a>
+            <a href="leaderboard/" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.leaderboard">Рейтинг</a>
           </li>
           <li>
-            <a href="changelog/" class="rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Changelog</a>
+            <a href="changelog/" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.changelog">Оновлення</a>
           </li>
         </ul>
       </nav>
