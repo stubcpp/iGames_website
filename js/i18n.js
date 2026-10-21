@@ -117,7 +117,24 @@
       "docs.elo.disciplinesTitle": "Окремі дисципліни",
       "docs.elo.disciplinesBody": "Шахи, класичні шашки 8х8 та довгі нарди ведуть незалежні рейтинги. Успіхи в одній грі не змінюють рейтинг в іншій, тому кожна дисципліна має власну змагальну історію.",
       "docs.elo.transactionTitle": "Транзакційний перерахунок",
-      "docs.elo.transactionBody": "Результат партії, зміна рейтингу та запис в історію застосовуються сервером як одна узгоджена транзакція. Це виключає розбіжності між гравцями та втрату оновлень."
+      "docs.elo.transactionBody": "Результат партії, зміна рейтингу та запис в історію застосовуються сервером як одна узгоджена транзакція. Це виключає розбіжності між гравцями та втрату оновлень.",
+      "leaderboard.meta.title": "Рейтинг — iGames",
+      "leaderboard.meta.description": "Дивіться поточний рейтинг ELO у шахах, шашках і довгих нардах. Оберіть дисципліну та перегляньте таблицю найсильніших гравців iGames.",
+      "leaderboard.eyebrow": "Рейтинг гравців",
+      "leaderboard.title": "Лідерборд iGames",
+      "leaderboard.intro": "Поточні рейтинги ELO за дисциплінами. Оберіть гру, щоб переглянути таблицю.",
+      "leaderboard.tabsAria": "Дисципліни рейтингу",
+      "leaderboard.tab.chess": "Шахи",
+      "leaderboard.tab.checkers": "Шашки",
+      "leaderboard.tab.backgammon": "Нарди",
+      "leaderboard.tableCaption": "Рейтинг ELO за обраною дисципліною",
+      "leaderboard.rank": "Місце",
+      "leaderboard.username": "Гравець",
+      "leaderboard.elo": "Рейтинг ELO",
+      "leaderboard.loading": "Завантаження рейтингу…",
+      "leaderboard.empty": "Поки що немає рейтингових гравців.",
+      "leaderboard.error": "Сервер авторизації тимчасово на технічному обслуговуванні. Лідерборд оновиться найближчим часом.",
+      "leaderboard.retry": "Спробувати ще раз"
     },
     en: {
       "meta.title": "iGames — Modern Platform for Intellectual Games",
@@ -230,7 +247,24 @@
       "docs.elo.disciplinesTitle": "Separate disciplines",
       "docs.elo.disciplinesBody": "Chess, Classic 8x8 Checkers, and Long Backgammon each maintain an independent rating. Success in one game does not change your rating in another, so every discipline has its own competitive history.",
       "docs.elo.transactionTitle": "Transactional updates",
-      "docs.elo.transactionBody": "The game result, rating change, and history record are applied by the server as one consistent transaction. This prevents discrepancies between players and lost updates."
+      "docs.elo.transactionBody": "The game result, rating change, and history record are applied by the server as one consistent transaction. This prevents discrepancies between players and lost updates.",
+      "leaderboard.meta.title": "Leaderboard — iGames",
+      "leaderboard.meta.description": "View the current ELO leaderboard for Chess, Checkers, and Long Backgammon. Choose a discipline and see the top iGames players.",
+      "leaderboard.eyebrow": "Player rankings",
+      "leaderboard.title": "iGames Leaderboard",
+      "leaderboard.intro": "Current ELO ratings by discipline. Choose a game to view its leaderboard.",
+      "leaderboard.tabsAria": "Leaderboard disciplines",
+      "leaderboard.tab.chess": "Chess",
+      "leaderboard.tab.checkers": "Checkers",
+      "leaderboard.tab.backgammon": "Backgammon",
+      "leaderboard.tableCaption": "ELO leaderboard for the selected discipline",
+      "leaderboard.rank": "Rank",
+      "leaderboard.username": "Username",
+      "leaderboard.elo": "ELO Rating",
+      "leaderboard.loading": "Loading leaderboard...",
+      "leaderboard.empty": "No rated players yet.",
+      "leaderboard.error": "Authorization server is temporarily offline for maintenance. The leaderboard will refresh shortly.",
+      "leaderboard.retry": "Try again"
     }
   };
 

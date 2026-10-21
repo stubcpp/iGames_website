@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="leaderboard.meta.title">Рейтинг — iGames</title>
+  <meta name="description" content="Дивіться поточний рейтинг ELO у шахах, шашках і довгих нардах. Оберіть дисципліну та перегляньте таблицю найсильніших гравців iGames." data-i18n-content="leaderboard.meta.description">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+
+  <meta property="og:title" content="iGames — Сучасна платформа інтелектуальних ігор" data-i18n-content="meta.ogTitle">
+  <meta property="og:description" content="Грай у шахи, класичні шашки та довгі нарди в блискавичному додатку для комп'ютера з надійним захистом від читерів." data-i18n-content="meta.ogDescription">
+  <meta property="og:image" content="https://github.io">
+  <meta property="og:url" content="https://github.io">
+  <meta property="og:locale" content="uk_UA" data-i18n-content="meta.ogLocale">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="iGames">
+  <!-- TODO: add canonical URL when domain is known -->
+  <!-- TODO: replace placeholder og:image and og:url with a real social preview asset and production URL -->
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Crect x='7' y='7' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='17' y='7' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='7' y='17' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3Crect x='17' y='17' width='8' height='8' rx='1.5' fill='%23ffffff'/%3E%3C/svg%3E">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/share.js" defer></script>
+  <style>
+    [hidden] {
+      display: none !important;
+    }
+    .lb-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.25rem;
+      padding: 0.25rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.75rem;
+      background-color: #f9fafb;
+    }
+    .lb-tabs__tab {
+      min-width: 0;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 1.25rem;
+      color: #4b5563;
+      text-align: center;
+      transition: background-color 150ms ease, color 150ms ease;
+    }
+    .lb-tabs__tab:hover {
+      color: #111827;
+    }
+    .lb-tabs__tab--active {
+      background-color: #ffffff;
+      color: #111827;
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.06);
+    }
+    .lb-tabs__tab:focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 2px;
+    }
+    @media (min-width: 640px) {
+      .lb-tabs {
+        display: flex;
+      }
+      .lb-tabs__tab {
+        flex: 1 1 0%;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+    .lb-table tbody tr:nth-child(even) {
+      background-color: #f9fafb;
+    }
+    .lb-table tbody tr:hover {
+      background-color: #eff6ff;
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800 antialiased">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" data-i18n="a11y.skip">Перейти до вмісту</a>
+
+  <div class="fixed inset-x-0 top-0 z-40 flex h-12 items-center justify-center border-b border-amber-200 bg-amber-50 px-4 text-center">
+    <p class="text-[11px] leading-4 text-amber-900" data-i18n="banner.beta">🚀 Сервіс працює в режимі бета-тестування. Поточна адреса сервера за замовчуванням: ws://localhost:8080</p>
+  </div>
+
+  <header class="fixed inset-x-0 top-12 z-50 h-16 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex h-full max-w-6xl items-center justify-between px-4 sm:px-6">
+      <a href="../index.html" aria-label="iGames — Intellectual Games" class="flex items-center gap-2 rounded-lg text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+        <svg class="h-7 w-7 flex-none text-blue-600 sm:h-8 sm:w-8" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" focusable="false">
+          <rect x="4" y="4" width="10" height="10" rx="2"/>
+          <rect x="18" y="4" width="10" height="10" rx="2"/>
+          <rect x="4" y="18" width="10" height="10" rx="2"/>
+          <rect x="18" y="18" width="10" height="10" rx="2"/>
+        </svg>
+        <span class="flex flex-col items-start">
+          <span class="text-lg font-bold leading-none text-gray-900">iGames</span>
+          <span class="mt-0.5 text-[10px] font-medium leading-none text-indigo-600">iNtellectual games</span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-6 lg:flex" aria-label="Основна навігація" data-i18n-aria-label="nav.primaryAria">
+        <ul class="flex items-center gap-6">
+          <li>
+            <a href="../index.html#about" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.about">Про проєкт</a>
+          </li>
+          <li>
+            <a href="../docs/index.html" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.docs">Документація</a>
+          </li>
+          <li>
+            <a href="../leaderboard/" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.leaderboard">Рейтинг</a>
+          </li>
+          <li>
+            <a href="../changelog/" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.changelog">Оновлення</a>
+          </li>
+        </ul>
+        <div class="flex items-center gap-3">
+          <div class="inline-flex items-center rounded-lg border border-gray-200 bg-gray-50 p-0.5" role="group" aria-label="Мова інтерфейсу" data-i18n-aria-label="lang.groupAria">
+            <button type="button" data-lang-btn="uk" lang="uk" aria-label="Українська" aria-pressed="true" class="rounded-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">UA</button>
+            <button type="button" data-lang-btn="en" lang="en" aria-label="English" aria-pressed="false" class="rounded-md px-2 py-1 text-xs font-semibold text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">EN</button>
+          </div>
+          <a href="../index.html#download" class="whitespace-nowrap rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"><span data-i18n="nav.download">Завантажити</span></a>
+        </div>
+      </nav>
+
+      <div class="flex items-center gap-2 lg:hidden">
+        <a href="../index.html#download" class="whitespace-nowrap rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"><span data-i18n="nav.download">Завантажити</span></a>
+        <details class="relative">
+          <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 [&::-webkit-details-marker]:hidden" aria-label="Відкрити головне меню" data-i18n-aria-label="nav.openMenuAria">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+              <path d="M4 7h16M4 12h16M4 17h16"/>
+            </svg>
+          </summary>
+          <div class="absolute right-0 mt-2 w-56 rounded-xl border border-gray-200 bg-white p-2 shadow-lg">
+            <nav aria-label="Мобільна навігація" data-i18n-aria-label="nav.mobileAria">
+              <ul class="flex flex-col">
+                <li>
+                  <a href="../index.html#about" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.about">Про проєкт</a>
+                </li>
+                <li>
+                  <a href="../docs/index.html" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.docs">Документація</a>
+                </li>
+                <li>
+                  <a href="../leaderboard/" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.leaderboard">Рейтинг</a>
+                </li>
+                <li>
+                  <a href="../changelog/" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.changelog">Оновлення</a>
+                </li>
+                <li class="mt-2 border-t border-gray-100 pt-2">
+                  <div class="flex items-center justify-between px-3 py-1">
+                    <span class="text-xs font-medium text-gray-500" data-i18n="nav.language">Мова</span>
+                    <div class="inline-flex items-center rounded-lg border border-gray-200 bg-gray-50 p-0.5" role="group" aria-label="Мова інтерфейсу" data-i18n-aria-label="lang.groupAria">
+                      <button type="button" data-lang-btn="uk" lang="uk" aria-label="Українська" aria-pressed="true" class="rounded-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">UA</button>
+                      <button type="button" data-lang-btn="en" lang="en" aria-label="English" aria-pressed="false" class="rounded-md px-2 py-1 text-xs font-semibold text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">EN</button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mt-2 border-t border-gray-100 pt-2">
+                  <a href="../index.html#download" class="block rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"><span data-i18n="nav.download">Завантажити</span></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="pt-36 pb-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+
+      <div class="max-w-3xl">
+        <p class="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-medium text-gray-600"
+           data-i18n="leaderboard.eyebrow">Рейтинг гравців</p>
+        <h1 class="mt-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+            data-i18n="leaderboard.title">Лідерборд iGames</h1>
+        <p class="mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg"
+           data-i18n="leaderboard.intro">Поточні рейтинги ELO за дисциплінами. Оберіть гру, щоб переглянути таблицю.</p>
+      </div>
+
+      <div class="mt-10">
+        <div class="lb-tabs" role="tablist" aria-label="Дисципліни рейтингу" data-i18n-aria-label="leaderboard.tabsAria">
+          <button type="button" role="tab" id="tab-chess" data-game="chess" aria-controls="leaderboard-panel" aria-selected="true" tabindex="0" class="lb-tabs__tab lb-tabs__tab--active" data-i18n="leaderboard.tab.chess">Шахи</button>
+          <button type="button" role="tab" id="tab-checkers" data-game="checkers" aria-controls="leaderboard-panel" aria-selected="false" tabindex="-1" class="lb-tabs__tab" data-i18n="leaderboard.tab.checkers">Шашки</button>
+          <button type="button" role="tab" id="tab-backgammon" data-game="backgammon" aria-controls="leaderboard-panel" aria-selected="false" tabindex="-1" class="lb-tabs__tab" data-i18n="leaderboard.tab.backgammon">Нарди</button>
+        </div>
+
+        <div id="leaderboard-panel" role="tabpanel" aria-labelledby="tab-chess" tabindex="0" aria-busy="true"
+             class="mt-6 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+
+          <div id="leaderboard-loading" role="status" aria-live="polite" aria-atomic="true"
+               class="flex flex-col items-center justify-center gap-3 rounded-2xl border border-gray-200 bg-gray-50 px-6 py-12">
+            <span class="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-blue-600" aria-hidden="true"></span>
+            <p class="text-sm font-medium text-gray-600" data-i18n="leaderboard.loading">Завантаження рейтингу…</p>
+          </div>
+
+          <div id="leaderboard-error" role="alert" hidden
+               class="rounded-2xl border border-amber-200 bg-amber-50 p-5 sm:p-6">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 flex-none text-amber-600" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true" focusable="false">
+                  <path d="M12 3 2.5 20h19L12 3Z"/>
+                  <path d="M12 9v5"/>
+                  <path d="M12 17.5h.01"/>
+                </svg>
+                <p class="text-sm leading-relaxed text-amber-900"
+                   data-i18n="leaderboard.error">Сервер авторизації тимчасово на технічному обслуговуванні. Лідерборд оновиться найближчим часом.</p>
+              </div>
+              <button type="button" id="leaderboard-retry"
+                      class="inline-flex flex-none items-center justify-center gap-2 rounded-lg border border-amber-300 bg-white px-4 py-2 text-sm font-medium text-amber-900 transition-colors hover:bg-amber-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+                <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <path d="M20 11a8 8 0 1 0-2.3 5.7"/>
+                  <path d="M20 4v7h-7"/>
+                </svg>
+                <span data-i18n="leaderboard.retry">Спробувати ще раз</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="leaderboard-empty" role="status" hidden
+               class="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-10 text-center">
+            <p class="text-sm font-medium text-gray-600" data-i18n="leaderboard.empty">Поки що немає рейтингових гравців.</p>
+          </div>
+
+          <div id="leaderboard-table-wrap" hidden
+               class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+            <div class="overflow-x-auto">
+              <table class="lb-table w-full table-fixed text-left text-sm">
+                <caption class="sr-only" data-i18n="leaderboard.tableCaption">Рейтинг ELO за обраною дисципліною</caption>
+                <thead class="bg-gray-100 text-xs uppercase tracking-wide text-gray-600">
+                  <tr>
+                    <th scope="col" class="w-[18%] whitespace-nowrap px-2.5 py-3 font-semibold sm:w-[14%] sm:px-6" data-i18n="leaderboard.rank">Місце</th>
+                    <th scope="col" class="px-2.5 py-3 font-semibold sm:px-6" data-i18n="leaderboard.username">Гравець</th>
+                    <th scope="col" class="w-[30%] px-2.5 py-3 font-semibold sm:w-[22%] sm:px-6" data-i18n="leaderboard.elo">Рейтинг ELO</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderboard-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="relative mx-auto mt-12 flex w-full max-w-xs flex-col items-center">
+        <span id="share-toast" data-share-toast role="status" aria-live="polite" aria-atomic="true" aria-hidden="true"
+              class="pointer-events-none absolute bottom-full left-1/2 mb-3 inline-flex -translate-x-1/2 translate-y-1 items-center gap-1.5 whitespace-nowrap rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-800 opacity-0 shadow-sm transition duration-300 ease-out motion-reduce:transition-none">
+          <svg class="h-3.5 w-3.5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="m5 13 4 4L19 7"/>
+          </svg>
+          <span data-i18n="share.copied">Посилання скопійовано!</span>
+        </span>
+        <button type="button" data-share-button data-share-url="https://github.io"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-blue-200 bg-white px-5 py-3 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+          <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <path d="m8.6 10.5 6.8-4"/>
+            <path d="m8.6 13.5 6.8 4"/>
+          </svg>
+          <span data-i18n="share.button">Поділитися сайтом</span>
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="border-t border-gray-200 bg-white py-8">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
+      <div class="text-center sm:text-left">
+        <p class="text-sm text-gray-500">© 2026 iGames</p>
+      </div>
+
+      <nav aria-label="Навігація в нижній частині" data-i18n-aria-label="nav.footerAria">
+        <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          <li>
+            <a href="../docs/index.html" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.docs">Документація</a>
+          </li>
+          <li>
+            <a href="../leaderboard/" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.leaderboard">Рейтинг</a>
+          </li>
+          <li>
+            <a href="../changelog/" class="whitespace-nowrap rounded text-sm text-gray-500 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.changelog">Оновлення</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // TODO: Replace this placeholder string with your real active production ngrok tunnel address before testing
+      const NGROK_URL = "https://ngrok-free.app";
+
+      let current_game = "chess";
+      let request_serial = 0;
+
+      const tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"][data-game]'));
+      const tablist = document.querySelector('[role="tablist"]');
+      const panel = document.getElementById("leaderboard-panel");
+      const loadingState = document.getElementById("leaderboard-loading");
+      const errorState = document.getElementById("leaderboard-error");
+      const emptyState = document.getElementById("leaderboard-empty");
+      const tableWrap = document.getElementById("leaderboard-table-wrap");
+      const tbody = document.getElementById("leaderboard-body");
+      const retryButton = document.getElementById("leaderboard-retry");
+
+      function setHidden(element, hidden) {
+        if (element) {
+          element.hidden = hidden;
+        }
+      }
+
+      function clearRows() {
+        if (!tbody) {
+          return;
+        }
+
+        while (tbody.firstChild) {
+          tbody.removeChild(tbody.firstChild);
+        }
+      }
+
+      function setBusy(busy) {
+        if (panel) {
+          panel.setAttribute("aria-busy", busy ? "true" : "false");
+        }
+      }
+
+      function showLoading() {
+        setHidden(loadingState, false);
+        setHidden(errorState, true);
+        setHidden(emptyState, true);
+        setHidden(tableWrap, true);
+        clearRows();
+        setBusy(true);
+      }
+
+      function showError() {
+        setHidden(loadingState, true);
+        setHidden(emptyState, true);
+        setHidden(tableWrap, true);
+        setHidden(errorState, false);
+        clearRows();
+        setBusy(false);
+      }
+
+      function buildRow(player, rank) {
+        const row = document.createElement("tr");
+        row.className = "border-t border-gray-200";
+
+        const rankCell = document.createElement("td");
+        rankCell.className = "whitespace-nowrap px-2.5 py-3 sm:px-6";
+
+        const rankBadge = document.createElement("span");
+        rankBadge.className = "inline-flex h-7 min-w-[1.75rem] items-center justify-center rounded-full bg-blue-50 px-2 text-xs font-semibold tabular-nums text-blue-700";
+        rankBadge.textContent = String(rank);
+        rankCell.appendChild(rankBadge);
+
+        const userCell = document.createElement("td");
+        userCell.className = "break-words px-2.5 py-3 font-medium text-gray-900 sm:px-6";
+        const login = player && typeof player.login === "string" && player.login.trim() !== ""
+          ? player.login
+          : "—";
+        userCell.textContent = login;
+
+        const eloCell = document.createElement("td");
+        eloCell.className = "whitespace-nowrap px-2.5 py-3 tabular-nums text-gray-700 sm:px-6";
+        const rawElo = player ? player.elo : null;
+        const isNumericElo = rawElo !== null && rawElo !== undefined && rawElo !== "" && Number.isFinite(Number(rawElo));
+        eloCell.textContent = isNumericElo ? String(Number(rawElo)) : "—";
+
+        row.appendChild(rankCell);
+        row.appendChild(userCell);
+        row.appendChild(eloCell);
+
+        return row;
+      }
+
+      function renderRows(players) {
+        const fragment = document.createDocumentFragment();
+
+        for (let i = 0; i < players.length; i++) {
+          fragment.appendChild(buildRow(players[i], i + 1));
+        }
+
+        clearRows();
+        if (tbody) {
+          tbody.appendChild(fragment);
+        }
+
+        setHidden(loadingState, true);
+        setHidden(errorState, true);
+        setHidden(tableWrap, players.length === 0);
+        setHidden(emptyState, players.length > 0);
+        setBusy(false);
+      }
+
+      function loadLeaderboard() {
+        const serial = ++request_serial;
+
+        showLoading();
+
+        fetch(`${NGROK_URL}/api/leaderboard?game=${current_game}`)
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("Leaderboard request failed");
+            }
+            return response.json();
+          })
+          .then(function (data) {
+            if (serial !== request_serial) {
+              return;
+            }
+
+            if (!Array.isArray(data)) {
+              throw new Error("Leaderboard response is not a list");
+            }
+
+            renderRows(data);
+          })
+          .catch(function () {
+            if (serial !== request_serial) {
+              return;
+            }
+
+            showError();
+          });
+      }
+
+      function setActiveTab(tab) {
+        for (let i = 0; i < tabs.length; i++) {
+          const isActive = tabs[i] === tab;
+          tabs[i].setAttribute("aria-selected", isActive ? "true" : "false");
+          tabs[i].tabIndex = isActive ? 0 : -1;
+          tabs[i].classList.toggle("lb-tabs__tab--active", isActive);
+        }
+
+        if (panel) {
+          panel.setAttribute("aria-labelledby", tab.id);
+        }
+
+        current_game = tab.getAttribute("data-game");
+      }
+
+      function activateTab(tab, focusTab, loadData) {
+        setActiveTab(tab);
+
+        if (focusTab) {
+          tab.focus();
+        }
+
+        if (loadData) {
+          loadLeaderboard();
+        }
+      }
+
+      function handleTabKeydown(event) {
+        const currentIndex = tabs.indexOf(document.activeElement);
+        if (currentIndex === -1) {
+          return;
+        }
+
+        let nextTab = null;
+
+        if (event.key === "ArrowRight") {
+          nextTab = tabs[(currentIndex + 1) % tabs.length];
+        } else if (event.key === "ArrowLeft") {
+          nextTab = tabs[(currentIndex - 1 + tabs.length) % tabs.length];
+        } else if (event.key === "Home") {
+          nextTab = tabs[0];
+        } else if (event.key === "End") {
+          nextTab = tabs[tabs.length - 1];
+        }
+
+        if (!nextTab) {
+          return;
+        }
+
+        event.preventDefault();
+        activateTab(nextTab, true, true);
+      }
+
+      function init() {
+        if (tabs.length === 0) {
+          return;
+        }
+
+        for (let i = 0; i < tabs.length; i++) {
+          tabs[i].addEventListener("click", function () {
+            activateTab(this, false, true);
+          });
+        }
+
+        if (tablist) {
+          tablist.addEventListener("keydown", handleTabKeydown);
+        }
+
+        if (retryButton) {
+          retryButton.addEventListener("click", loadLeaderboard);
+        }
+
+        const initialTab = document.getElementById("tab-chess") || tabs[0];
+        activateTab(initialTab, false, false);
+        loadLeaderboard();
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+
+</body>
+</html>
