@@ -409,7 +409,12 @@
 
         showLoading();
 
-        fetch(`${NGROK_URL}/api/leaderboard?game=${current_game}`)
+        fetch(`${NGROK_URL}/api/leaderboard?game=${current_game}`, {
+          method: "GET",
+          headers: {
+            "ngrok-skip-browser-warning": "true"
+          }
+        })
           .then(function (response) {
             if (!response.ok) {
               throw new Error("Leaderboard request failed");
