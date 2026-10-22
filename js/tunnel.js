@@ -3,7 +3,7 @@
 
   var RAW_URL = "https://raw.githubusercontent.com/stubcpp/iGames_website/main/tunnel_url.txt";
   var API_URL = "https://api.github.com/repos/stubcpp/iGames_website/contents/tunnel_url.txt?ref=main";
-  var TUNNEL_PATTERN = /^https:\/\/[a-zA-Z0-9.-]+\.(?:lhr\.life|pinggy(?:-free)?\.link)$/;
+  var TUNNEL_PATTERN = /^https:\/\/[a-zA-Z0-9.-]+\.(?:serveousercontent\.com|lhr\.life|pinggy(?:-free)?\.link)$/;
   var pending = null;
 
   function normalize(text) {
