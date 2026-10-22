@@ -297,8 +297,8 @@
     (function () {
       "use strict";
 
-      // Live production ngrok tunnel
-      const NGROK_URL = "https://mounting-angelic-hungry.ngrok-free.dev";
+      // Live production tunnel (free pinggy; the address rotates every hour)
+      const TUNNEL_URL = "https://yblly-92-43-82-96.run.pinggy-free.link";
 
       let current_game = "chess";
       let request_serial = 0;
@@ -409,7 +409,7 @@
 
         showLoading();
 
-        fetch(`${NGROK_URL}/api/leaderboard?game=${current_game}`, {
+        fetch(`${TUNNEL_URL}/api/leaderboard?game=${current_game}`, {
           method: "GET",
           headers: {
             "ngrok-skip-browser-warning": "true"
