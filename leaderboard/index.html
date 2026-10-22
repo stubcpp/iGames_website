@@ -23,6 +23,8 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="../js/i18n.js" defer></script>
+  <script src="../js/tunnel.js" defer></script>
+  <script src="../js/server-banner.js" defer></script>
   <script src="../js/share.js" defer></script>
   <style>
     [hidden] {
@@ -83,7 +85,7 @@
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" data-i18n="a11y.skip">Перейти до вмісту</a>
 
   <div class="fixed inset-x-0 top-0 z-40 flex h-12 items-center justify-center border-b border-amber-200 bg-amber-50 px-4 text-center">
-    <p class="text-[11px] leading-4 text-amber-900" data-i18n="banner.beta">🚀 Сервіс працює в режимі бета-тестування. Поточна адреса сервера за замовчуванням: ws://localhost:8080</p>
+    <p class="text-[11px] leading-4 text-amber-900"><span data-i18n="banner.betaPrefix">🚀 Сервіс працює в режимі бета-тестування. Поточна адреса сервера за замовчуванням:</span> <span id="banner-server-url" class="font-mono">ws://localhost:8080</span></p>
   </div>
 
   <header class="fixed inset-x-0 top-12 z-50 h-16 border-b border-gray-200 bg-white/95 backdrop-blur">
@@ -297,54 +299,6 @@
     (function () {
       "use strict";
 
-      // Free pinggy rotates the public address every hour. The site resolves the
-      // current address at runtime from the public website repo and only falls
-      // back to the last known-good address if that lookup fails.
-      // raw.githubusercontent.com is CDN-cached for up to 5 minutes, so if the
-      // resolved URL does not answer, we re-read the file through the GitHub API
-      // (max-age 60s) and retry once.
-      const TUNNEL_URL_SOURCE = "https://raw.githubusercontent.com/stubcpp/iGames_website/main/tunnel_url.txt";
-      const TUNNEL_URL_API = "https://api.github.com/repos/stubcpp/iGames_website/contents/tunnel_url.txt?ref=main";
-      const TUNNEL_URL_FALLBACK = "https://yblly-92-43-82-96.run.pinggy-free.link";
-      const TUNNEL_URL_PATTERN = /^https:\/\/[a-zA-Z0-9.-]+\.pinggy(-free)?\.link$/;
-
-      function normalizeTunnelUrl(text) {
-        const candidate = (text || "").trim();
-        return TUNNEL_URL_PATTERN.test(candidate) ? candidate : null;
-      }
-
-      async function resolveTunnelUrl() {
-        try {
-          const response = await fetch(TUNNEL_URL_SOURCE + "?t=" + Date.now(), { cache: "no-store" });
-          if (response.ok) {
-            const candidate = normalizeTunnelUrl(await response.text());
-            if (candidate) {
-              return candidate;
-            }
-          }
-        } catch (error) {
-          // Network/raw-github failure: use the fallback below.
-        }
-        return TUNNEL_URL_FALLBACK;
-      }
-
-      async function resolveTunnelUrlFresh() {
-        try {
-          const response = await fetch(TUNNEL_URL_API + "&t=" + Date.now(), {
-            headers: {
-              "Accept": "application/vnd.github.raw"
-            },
-            cache: "no-store"
-          });
-          if (response.ok) {
-            return normalizeTunnelUrl(await response.text());
-          }
-        } catch (error) {
-          // Fall through to null: the caller keeps the raw/fallback result.
-        }
-        return null;
-      }
-
       let current_game = "chess";
       let request_serial = 0;
 
@@ -470,7 +424,13 @@
         showLoading();
 
         try {
-          let baseUrl = await resolveTunnelUrl();
+          let baseUrl = await window.iGamesTunnel.resolve();
+          if (!baseUrl) {
+            baseUrl = await window.iGamesTunnel.resolveFresh();
+          }
+          if (!baseUrl) {
+            throw new Error("Tunnel URL is unavailable");
+          }
 
           if (serial !== request_serial) {
             return;
@@ -482,7 +442,7 @@
             data = await fetchLeaderboard(baseUrl);
           } catch (firstError) {
             // The cached raw file may still hold the previous (expired) address.
-            const freshBaseUrl = await resolveTunnelUrlFresh();
+            const freshBaseUrl = await window.iGamesTunnel.resolveFresh();
 
             if (!freshBaseUrl || freshBaseUrl === baseUrl) {
               throw firstError;

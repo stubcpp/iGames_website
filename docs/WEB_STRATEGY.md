@@ -47,6 +47,7 @@
   * Скрипт `run_tunnel.sh` у репозиторії `iGames` автоматично перепіднімає тунель, витягує новий URL і пушить його у два репозиторії: `stubcpp/iGames` (`igames/iGames_website/tunnel_url.txt`, branch `master`) та `stubcpp/iGames_website` (`tunnel_url.txt`, branch `main`).
   * Жорстко зашитої адреси в коді сайту немає: `leaderboard/index.html` на кожному завантаженні читає актуальний URL з `https://raw.githubusercontent.com/stubcpp/iGames_website/main/tunnel_url.txt`, перевіряє формат `^https://*.pinggy-free.link$` і лише у разі помилки використовує останню відому адресу (fallback).
   * `raw.githubusercontent.com` кешується CDN до 5 хвилин, тому якщо отримана адреса не відповідає, сторінка повторно читає файл через GitHub API (`api.github.com`, `max-age` 60 с, заголовок `Accept: application/vnd.github.raw`) і робить рівно одну повторну спробу запиту лідерборда.
+  * Банер на всіх сторінках (`index.html`, `docs/index.html`, `leaderboard/index.html`) показує актуальну адресу у форматі `wss://...`; її отримує `js/server-banner.js` через спільний модуль `js/tunnel.js`.
   * Запит Fetch досі передає заголовок `"ngrok-skip-browser-warning": "true"` — це спадок від старого ngrok-тунелю; сервер дозволяє цей заголовок у CORS preflight.
 
 ---
