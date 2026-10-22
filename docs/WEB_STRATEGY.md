@@ -43,9 +43,10 @@
 * **Хостинг сайту:** **GitHub Pages** (безкоштовний статичний хостинг, окремий репозиторій `stubcpp/iGames_website`).
 * **Верстка:** HTML5 + Tailwind CSS (CDN).
 * **Динаміка та API:** Асинхронний Vanilla JavaScript (Fetch API).
-* **Мережевий міст (Beta-тест):** Програма **ngrok** на домашньому ноутбуці розробника, яка створює захищений публічний тунель.
-  * Константа в JS коді сайту: `const NGROK_URL = "https://mounting-angelic-hungry.ngrok-free.dev";`
-  * Запит Fetch обов'язково передає заголовок `"ngrok-skip-browser-warning": "true"` для обходу проміжних сторінок ngrok.
+* **Мережевий міст (Beta-тест):** програма **pinggy** (`free.pinggy.io`, SSH-тунель на порт 443) на домашньому ноутбуці розробника. Безкоштовний тунель живе 60 хвилин, тому публічна адреса змінюється щогодини.
+  * Скрипт `run_tunnel.sh` у репозиторії `iGames` автоматично перепіднімає тунель, витягує новий URL і пушить його у два репозиторії: `stubcpp/iGames` (`igames/iGames_website/tunnel_url.txt`, branch `master`) та `stubcpp/iGames_website` (`tunnel_url.txt`, branch `main`).
+  * Жорстко зашитої адреси в коді сайту немає: `leaderboard/index.html` на кожному завантаженні читає актуальний URL з `https://raw.githubusercontent.com/stubcpp/iGames_website/main/tunnel_url.txt`, перевіряє формат `^https://*.pinggy-free.link$` і лише у разі помилки використовує останню відому адресу (fallback).
+  * Запит Fetch досі передає заголовок `"ngrok-skip-browser-warning": "true"` — це спадок від старого ngrok-тунелю; сервер дозволяє цей заголовок у CORS preflight.
 
 ---
 

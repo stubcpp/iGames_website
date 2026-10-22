@@ -297,8 +297,27 @@
     (function () {
       "use strict";
 
-      // Live production tunnel (free pinggy; the address rotates every hour)
-      const TUNNEL_URL = "https://yblly-92-43-82-96.run.pinggy-free.link";
+      // Free pinggy rotates the public address every hour. The site resolves the
+      // current address at runtime from the public website repo and only falls
+      // back to the last known-good address if that lookup fails.
+      const TUNNEL_URL_SOURCE = "https://raw.githubusercontent.com/stubcpp/iGames_website/main/tunnel_url.txt";
+      const TUNNEL_URL_FALLBACK = "https://yblly-92-43-82-96.run.pinggy-free.link";
+      const TUNNEL_URL_PATTERN = /^https:\/\/[a-zA-Z0-9.-]+\.pinggy(-free)?\.link$/;
+
+      async function resolveTunnelUrl() {
+        try {
+          const response = await fetch(TUNNEL_URL_SOURCE + "?t=" + Date.now(), { cache: "no-store" });
+          if (response.ok) {
+            const candidate = (await response.text()).trim();
+            if (TUNNEL_URL_PATTERN.test(candidate)) {
+              return candidate;
+            }
+          }
+        } catch (error) {
+          // Network/raw-github failure: use the fallback below.
+        }
+        return TUNNEL_URL_FALLBACK;
+      }
 
       let current_game = "chess";
       let request_serial = 0;
@@ -404,41 +423,47 @@
         setBusy(false);
       }
 
-      function loadLeaderboard() {
+      async function loadLeaderboard() {
         const serial = ++request_serial;
 
         showLoading();
 
-        fetch(`${TUNNEL_URL}/api/leaderboard?game=${current_game}`, {
-          method: "GET",
-          headers: {
-            "ngrok-skip-browser-warning": "true"
+        try {
+          const baseUrl = await resolveTunnelUrl();
+
+          if (serial !== request_serial) {
+            return;
           }
-        })
-          .then(function (response) {
-            if (!response.ok) {
-              throw new Error("Leaderboard request failed");
-            }
-            return response.json();
-          })
-          .then(function (data) {
-            if (serial !== request_serial) {
-              return;
-            }
 
-            if (!Array.isArray(data)) {
-              throw new Error("Leaderboard response is not a list");
+          const response = await fetch(`${baseUrl}/api/leaderboard?game=${current_game}`, {
+            method: "GET",
+            headers: {
+              "ngrok-skip-browser-warning": "true"
             }
-
-            renderRows(data);
-          })
-          .catch(function () {
-            if (serial !== request_serial) {
-              return;
-            }
-
-            showError();
           });
+
+          if (!response.ok) {
+            throw new Error("Leaderboard request failed");
+          }
+
+          const data = await response.json();
+
+          if (serial !== request_serial) {
+            return;
+          }
+
+          if (!Array.isArray(data)) {
+            throw new Error("Leaderboard response is not a list");
+          }
+
+          renderRows(data);
+        } catch (error) {
+          if (serial !== request_serial) {
+            return;
+          }
+
+          showError();
+        }
       }
 
       function setActiveTab(tab) {
