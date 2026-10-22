@@ -107,7 +107,7 @@
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" data-i18n="a11y.skip">Перейти до вмісту</a>
 
   <div class="fixed inset-x-0 top-0 z-40 flex h-12 items-center justify-center border-b border-amber-200 bg-amber-50 px-4 text-center">
-    <p class="text-[11px] leading-4 text-amber-900"><span data-i18n="banner.betaPrefix">🚀 Сервіс працює в режимі бета-тестування. Поточна адреса сервера за замовчуванням:</span> <span id="banner-server-url" class="font-mono">ws://localhost:8080</span></p>
+    <p class="text-[11px] leading-4 text-amber-900"><span data-i18n="banner.betaPrefix">🚀 Сервіс працює в режимі бета-тестування. Порт ігрового севера: 443. Поточна адреса:</span> <span id="banner-server-url" class="font-mono">ws://localhost:8080</span></p>
   </div>
 
   <header class="fixed inset-x-0 top-12 z-50 h-16 border-b border-gray-200 bg-white/95 backdrop-blur">
@@ -207,7 +207,7 @@
       </div>
 
       <section class="mt-12" aria-labelledby="backstory-heading">
-        <h2 id="backstory-heading" class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl" data-i18n="changelog.backstory.title">🌟 Як усе починалося (Передісторія)</h2>
+        <h2 id="backstory-heading" class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl" data-i18n="changelog.backstory.title">🌟 Як усе починалося</h2>
 
         <div class="mt-6 grid gap-4 sm:grid-cols-2">
           <article class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
@@ -218,7 +218,7 @@
                   <path d="M8 3v4M16 3v4M3 10h18"/>
                 </svg>
               </span>
-              <p class="text-sm leading-relaxed text-gray-600" data-i18n="changelog.backstory.item1">Приблизно 2006 рік: Автор активно грав у шахи на відомому ігровому сервері games.alkar.net. Саме тоді з'явилася мрія створити свій власний, більш зручний та вдосконалений сервіс, який об'єднав би не лише шахи, а й нарди.</p>
+              <p class="text-sm leading-relaxed text-gray-600" data-i18n="changelog.backstory.item1">Приблизно 2006 рік: Автор активно грав у шахи на відомому ігровому сервері games.alkar.net. Саме тоді з'явилася мрія створити свій власний, більш зручний та вдосконалений сервіс, який об'єднав би не лише шахи, а й шашки та нарди.</p>
             </div>
           </article>
 
@@ -243,7 +243,7 @@
                   <path d="M6 6 3 3"/>
                 </svg>
               </span>
-              <p class="text-sm leading-relaxed text-gray-600" data-i18n="changelog.backstory.item3">Вибір інструментів: Для створення красивого зовнішнього вигляду програми (графічної частини) була обрана бібліотека wxWidgets, а для обміну повідомленнями між гравцями та сервером — створена власна зручна система MessageFrame.</p>
+              <p class="text-sm leading-relaxed text-gray-600" data-i18n="changelog.backstory.item3">Вибір інструментів: Для створення красивого зовнішнього вигляду програми (графічної частини) була обрана бібліотека wxWidgets, а для обміну повідомленнями між гравцями та сервером — створена власний зручний фреймворк MessageFrame.</p>
             </div>
           </article>
 
@@ -255,15 +255,15 @@
                   <path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15Z"/>
                 </svg>
               </span>
-              <p class="text-sm leading-relaxed text-gray-600" data-i18n="changelog.backstory.item4">Початком 2026 року з'явилися перші робочі прототипи, які підтвердили, що концепція працює.</p>
+              <p class="text-sm leading-relaxed text-gray-600" data-i18n="changelog.backstory.item4">На початку 2026 року з'явилися перші робочі прототипи, які підтвердили, що концепція працює.</p>
             </div>
           </article>
         </div>
       </section>
 
       <section class="mt-16" aria-labelledby="timeline-heading">
-        <h2 id="timeline-heading" class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl" data-i18n="changelog.timeline.title">⏳ Хронологія розвитку проєкту</h2>
-        <p class="mt-2 text-sm font-medium text-gray-500" data-i18n="changelog.timeline.subtitle">Найсвіжіші події — зверху</p>
+        <h2 id="timeline-heading" class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl" data-i18n="changelog.timeline.title">⏳ Хронологія розвитку проекту</h2>
+        <p class="mt-2 text-sm font-medium text-gray-500" data-i18n="changelog.timeline.subtitle">Найбільш значимі події</p>
 
         <ol class="cl-timeline mt-8 list-none space-y-6 p-0">
           <li class="cl-entry">
@@ -296,7 +296,7 @@
                     </span>
                     <div>
                       <h4 class="text-sm font-semibold text-gray-900" data-i18n="changelog.stage7.item2.title">Постійна адреса в інтернеті</h4>
-                      <p class="mt-1 text-sm leading-relaxed text-gray-600"><span data-i18n="changelog.stage7.item2.body">Замість тимчасових посилань, які раніше змінювалися щогодини, проєкт отримав постійну та фіксовану тестову адресу:</span> <a href="https://igames-test.serveousercontent.com" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-700 underline decoration-blue-200 underline-offset-2 transition-colors hover:text-blue-800 hover:decoration-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">https://igames-test.serveousercontent.com</a></p>
+                      <p class="mt-1 text-sm leading-relaxed text-gray-600"><span data-i18n="changelog.stage7.item2.body">Для тестування функціоналу проект використовує тунель через який програми-клієнти можуть "бачити" ігровий сервер в інтернеті. Замість тимчасових посилань, які раніше змінювалися щогодини, туннель отримав постійну та фіксовану тестову адресу: https://igames-test.serveousercontent.com</span> <!--<a href="https://igames-test.serveousercontent.com" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-700 underline decoration-blue-200 underline-offset-2 transition-colors hover:text-blue-800 hover:decoration-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">https://igames-test.serveousercontent.com</a>--></p>
                     </div>
                   </div>
                 </div>
