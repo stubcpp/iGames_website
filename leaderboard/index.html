@@ -300,16 +300,25 @@
       // Free pinggy rotates the public address every hour. The site resolves the
       // current address at runtime from the public website repo and only falls
       // back to the last known-good address if that lookup fails.
+      // raw.githubusercontent.com is CDN-cached for up to 5 minutes, so if the
+      // resolved URL does not answer, we re-read the file through the GitHub API
+      // (max-age 60s) and retry once.
       const TUNNEL_URL_SOURCE = "https://raw.githubusercontent.com/stubcpp/iGames_website/main/tunnel_url.txt";
+      const TUNNEL_URL_API = "https://api.github.com/repos/stubcpp/iGames_website/contents/tunnel_url.txt?ref=main";
       const TUNNEL_URL_FALLBACK = "https://yblly-92-43-82-96.run.pinggy-free.link";
       const TUNNEL_URL_PATTERN = /^https:\/\/[a-zA-Z0-9.-]+\.pinggy(-free)?\.link$/;
+
+      function normalizeTunnelUrl(text) {
+        const candidate = (text || "").trim();
+        return TUNNEL_URL_PATTERN.test(candidate) ? candidate : null;
+      }
 
       async function resolveTunnelUrl() {
         try {
           const response = await fetch(TUNNEL_URL_SOURCE + "?t=" + Date.now(), { cache: "no-store" });
           if (response.ok) {
-            const candidate = (await response.text()).trim();
-            if (TUNNEL_URL_PATTERN.test(candidate)) {
+            const candidate = normalizeTunnelUrl(await response.text());
+            if (candidate) {
               return candidate;
             }
           }
@@ -317,6 +326,23 @@
           // Network/raw-github failure: use the fallback below.
         }
         return TUNNEL_URL_FALLBACK;
+      }
+
+      async function resolveTunnelUrlFresh() {
+        try {
+          const response = await fetch(TUNNEL_URL_API + "&t=" + Date.now(), {
+            headers: {
+              "Accept": "application/vnd.github.raw"
+            },
+            cache: "no-store"
+          });
+          if (response.ok) {
+            return normalizeTunnelUrl(await response.text());
+          }
+        } catch (error) {
+          // Fall through to null: the caller keeps the raw/fallback result.
+        }
+        return null;
       }
 
       let current_game = "chess";
@@ -423,30 +449,48 @@
         setBusy(false);
       }
 
+      async function fetchLeaderboard(baseUrl) {
+        const response = await fetch(`${baseUrl}/api/leaderboard?game=${current_game}`, {
+          method: "GET",
+          headers: {
+            "ngrok-skip-browser-warning": "true"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Leaderboard request failed");
+        }
+
+        return response.json();
+      }
+
       async function loadLeaderboard() {
         const serial = ++request_serial;
 
         showLoading();
 
         try {
-          const baseUrl = await resolveTunnelUrl();
+          let baseUrl = await resolveTunnelUrl();
 
           if (serial !== request_serial) {
             return;
           }
 
-          const response = await fetch(`${baseUrl}/api/leaderboard?game=${current_game}`, {
-            method: "GET",
-            headers: {
-              "ngrok-skip-browser-warning": "true"
+          let data;
+
+          try {
+            data = await fetchLeaderboard(baseUrl);
+          } catch (firstError) {
+            // The cached raw file may still hold the previous (expired) address.
+            const freshBaseUrl = await resolveTunnelUrlFresh();
+
+            if (!freshBaseUrl || freshBaseUrl === baseUrl) {
+              throw firstError;
             }
-          });
 
-          if (!response.ok) {
-            throw new Error("Leaderboard request failed");
+            baseUrl = freshBaseUrl;
+            data = await fetchLeaderboard(baseUrl);
           }
-
-          const data = await response.json();
 
           if (serial !== request_serial) {
             return;

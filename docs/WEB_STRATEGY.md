@@ -46,6 +46,7 @@
 * **Мережевий міст (Beta-тест):** програма **pinggy** (`free.pinggy.io`, SSH-тунель на порт 443) на домашньому ноутбуці розробника. Безкоштовний тунель живе 60 хвилин, тому публічна адреса змінюється щогодини.
   * Скрипт `run_tunnel.sh` у репозиторії `iGames` автоматично перепіднімає тунель, витягує новий URL і пушить його у два репозиторії: `stubcpp/iGames` (`igames/iGames_website/tunnel_url.txt`, branch `master`) та `stubcpp/iGames_website` (`tunnel_url.txt`, branch `main`).
   * Жорстко зашитої адреси в коді сайту немає: `leaderboard/index.html` на кожному завантаженні читає актуальний URL з `https://raw.githubusercontent.com/stubcpp/iGames_website/main/tunnel_url.txt`, перевіряє формат `^https://*.pinggy-free.link$` і лише у разі помилки використовує останню відому адресу (fallback).
+  * `raw.githubusercontent.com` кешується CDN до 5 хвилин, тому якщо отримана адреса не відповідає, сторінка повторно читає файл через GitHub API (`api.github.com`, `max-age` 60 с, заголовок `Accept: application/vnd.github.raw`) і робить рівно одну повторну спробу запиту лідерборда.
   * Запит Fetch досі передає заголовок `"ngrok-skip-browser-warning": "true"` — це спадок від старого ngrok-тунелю; сервер дозволяє цей заголовок у CORS preflight.
 
 ---
