@@ -2,6 +2,7 @@
   "use strict";
 
   var PROBE_TIMEOUT_MS = 5000;
+  var PROBE_PATH = "/api/leaderboard?game=chess";
 
   function apply(url) {
     var node = document.getElementById("banner-server-url");
@@ -11,8 +12,8 @@
     node.textContent = window.iGamesTunnel.toWebSocketUrl(url);
   }
 
-  // no-cors достатньо, щоб відрізнити живий тунель від закритої сесії:
-  // живий сервер віддає будь-яку відповідь, мертвий — помилку з'єднання.
+  // Перевіряємо не корінь, а CORS-ендпоінт: localhost.run віддає на закриту
+  // сесію 502 без Access-Control-Allow-Origin, тому браузер відхиляє fetch.
   function isAlive(url) {
     return new Promise(function (resolve) {
       var controller = new AbortController();
@@ -20,14 +21,14 @@
         controller.abort();
       }, PROBE_TIMEOUT_MS);
 
-      fetch(url + "/", {
-        mode: "no-cors",
+      fetch(url + PROBE_PATH, {
+        method: "GET",
         cache: "no-store",
         signal: controller.signal
       })
-        .then(function () {
+        .then(function (response) {
           clearTimeout(timer);
-          resolve(true);
+          resolve(response.ok);
         })
         .catch(function () {
           clearTimeout(timer);
