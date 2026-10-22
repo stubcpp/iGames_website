@@ -23,6 +23,8 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="../js/i18n.js" defer></script>
+  <script src="../js/tunnel.js" defer></script>
+  <script src="../js/server-banner.js" defer></script>
   <script src="../js/share.js" defer></script>
   <style>
     [hidden] {
@@ -83,7 +85,7 @@
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" data-i18n="a11y.skip">Перейти до вмісту</a>
 
   <div class="fixed inset-x-0 top-0 z-40 flex h-12 items-center justify-center border-b border-amber-200 bg-amber-50 px-4 text-center">
-    <p class="text-[11px] leading-4 text-amber-900" data-i18n="banner.beta">🚀 Сервіс працює в режимі бета-тестування. Поточна адреса сервера за замовчуванням: ws://localhost:8080</p>
+    <p class="text-[11px] leading-4 text-amber-900"><span data-i18n="banner.betaPrefix">🚀 Сервіс працює в режимі бета-тестування. Порт ігрового сервера: 443. Поточна адреса:</span> <span id="banner-server-url" class="font-mono">ws://localhost:8080</span></p>
   </div>
 
   <header class="fixed inset-x-0 top-12 z-50 h-16 border-b border-gray-200 bg-white/95 backdrop-blur">
@@ -104,7 +106,7 @@
       <nav class="hidden items-center gap-6 lg:flex" aria-label="Основна навігація" data-i18n-aria-label="nav.primaryAria">
         <ul class="flex items-center gap-6">
           <li>
-            <a href="../index.html" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.about">Про проєкт</a>
+            <a href="../index.html" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.about">Про проект</a>
           </li>
           <li>
             <a href="../docs/index.html" class="whitespace-nowrap rounded text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" data-i18n="nav.docs">Документація</a>
@@ -137,7 +139,7 @@
             <nav aria-label="Мобільна навігація" data-i18n-aria-label="nav.mobileAria">
               <ul class="flex flex-col">
                 <li>
-                  <a href="../index.html" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.about">Про проєкт</a>
+                  <a href="../index.html" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.about">Про проект</a>
                 </li>
                 <li>
                   <a href="../docs/index.html" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" data-i18n="nav.docs">Документація</a>
@@ -297,9 +299,6 @@
     (function () {
       "use strict";
 
-      // Live production ngrok tunnel
-      const NGROK_URL = "https://mounting-angelic-hungry.ngrok-free.dev";
-
       let current_game = "chess";
       let request_serial = 0;
 
@@ -404,41 +403,69 @@
         setBusy(false);
       }
 
-      function loadLeaderboard() {
+      async function fetchLeaderboard(baseUrl) {
+        const response = await fetch(`${baseUrl}/api/leaderboard?game=${current_game}`, {
+          method: "GET",
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error("Leaderboard request failed");
+        }
+
+        return response.json();
+      }
+
+      async function loadLeaderboard() {
         const serial = ++request_serial;
 
         showLoading();
 
-        fetch(`${NGROK_URL}/api/leaderboard?game=${current_game}`, {
-          method: "GET",
-          headers: {
-            "ngrok-skip-browser-warning": "true"
+        try {
+          let baseUrl = await window.iGamesTunnel.resolve();
+          if (!baseUrl) {
+            baseUrl = await window.iGamesTunnel.resolveFresh();
           }
-        })
-          .then(function (response) {
-            if (!response.ok) {
-              throw new Error("Leaderboard request failed");
-            }
-            return response.json();
-          })
-          .then(function (data) {
-            if (serial !== request_serial) {
-              return;
+          if (!baseUrl) {
+            throw new Error("Tunnel URL is unavailable");
+          }
+
+          if (serial !== request_serial) {
+            return;
+          }
+
+          let data;
+
+          try {
+            data = await fetchLeaderboard(baseUrl);
+          } catch (firstError) {
+            // The cached raw file may still hold the previous (expired) address.
+            const freshBaseUrl = await window.iGamesTunnel.resolveFresh();
+
+            if (!freshBaseUrl || freshBaseUrl === baseUrl) {
+              throw firstError;
             }
 
-            if (!Array.isArray(data)) {
-              throw new Error("Leaderboard response is not a list");
-            }
+            baseUrl = freshBaseUrl;
+            data = await fetchLeaderboard(baseUrl);
+          }
 
-            renderRows(data);
-          })
-          .catch(function () {
-            if (serial !== request_serial) {
-              return;
-            }
+          if (serial !== request_serial) {
+            return;
+          }
 
-            showError();
-          });
+          if (!Array.isArray(data)) {
+            throw new Error("Leaderboard response is not a list");
+          }
+
+          renderRows(data);
+        } catch (error) {
+          if (serial !== request_serial) {
+            return;
+          }
+
+          showError();
+        }
       }
 
       function setActiveTab(tab) {

@@ -1,6 +1,6 @@
 # 🌐 Стратегія та архітектура вебсайту iGames (Структура типу OpenCode.ai)
 
-Цей документ є єдиним джерелом правди (Single Source of Truth) щодо створеної багатосторінкової структури та інтеграції вебсайту проєкту **iGames (Intellectual Games)**.
+Цей документ є єдиним джерелом правди (Single Source of Truth) щодо створеної багатосторінкової структури та інтеграції вебсайту проекту **iGames (Intellectual Games)**.
 
 ---
 
@@ -43,9 +43,12 @@
 * **Хостинг сайту:** **GitHub Pages** (безкоштовний статичний хостинг, окремий репозиторій `stubcpp/iGames_website`).
 * **Верстка:** HTML5 + Tailwind CSS (CDN).
 * **Динаміка та API:** Асинхронний Vanilla JavaScript (Fetch API).
-* **Мережевий міст (Beta-тест):** Програма **ngrok** на домашньому ноутбуці розробника, яка створює захищений публічний тунель.
-  * Константа в JS коді сайту: `const NGROK_URL = "https://mounting-angelic-hungry.ngrok-free.dev";`
-  * Запит Fetch обов'язково передає заголовок `"ngrok-skip-browser-warning": "true"` для обходу проміжних сторінок ngrok.
+* **Мережевий міст (Beta-тест):** SSH-тунель **serveo.net** (`ssh -T -R ... serveo.net`, порт 22) на домашньому ноутбуці розробника. Анонімні сесії Serveo живуть ~12 хвилин і дають новий випадковий субдомен після кожного перепідключення, тому використовується **зареєстрований SSH-ключ + фіксований субдомен**: `https://igames-test.serveousercontent.com`. Адреса залишається стабільною між перепідключеннями SSH-сесії, а CORS-запити сайту до API працюють напряму.
+  * Скрипт `igames/tools/tunnel/run_tunnel.sh` у репозиторії `iGames` автоматично перепіднімає тунель, витягує актуальний URL і пушить його у два репозиторії: `stubcpp/iGames` (`igames/iGames_website/tunnel_url.txt`, branch `master`) та `stubcpp/iGames_website` (`tunnel_url.txt`, branch `main`). Якщо ключ Serveo ще не зареєстровано, скрипт падає назад на випадковий URL, логує попередження з посиланням на реєстрацію і продовжує тримати тунель живим.
+  * Жорстко зашитої адреси в коді сайту немає: `leaderboard/index.html` на кожному завантаженні читає актуальний URL з `https://raw.githubusercontent.com/stubcpp/iGames_website/main/tunnel_url.txt`, перевіряє формат `^https://*.serveo.net$` або `^https://*.serveousercontent.com$` (а також `*.lhr.life` / `*.pinggy-free.link` для сумісності) і лише у разі помилки використовує останню відому адресу.
+  * `raw.githubusercontent.com` кешується CDN до 5 хвилин, тому якщо отримана адреса не відповідає, сторінка повторно читає файл через GitHub API (`api.github.com`, `max-age` 60 с, заголовок `Accept: application/vnd.github.raw`) і робить рівно одну повторну спробу запиту лідерборда.
+  * Банер на всіх сторінках (`index.html`, `docs/index.html`, `leaderboard/index.html`) показує актуальну адресу у форматі `wss://...`; її отримує `js/server-banner.js` через спільний модуль `js/tunnel.js`. Якщо raw-адреса вже не відповідає, банер перевіряє її доступність і перечитує URL через GitHub API.
+  * Запити лідерборда не передають кастомних заголовків, тому CORS preflight не виконується; сервер віддає `Access-Control-Allow-Origin: *`. Заголовок `ngrok-skip-browser-warning` у CORS-конфігурації сервера залишено лише для сумісності.
 
 ---
 
