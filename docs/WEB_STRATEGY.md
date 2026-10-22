@@ -43,12 +43,12 @@
 * **Хостинг сайту:** **GitHub Pages** (безкоштовний статичний хостинг, окремий репозиторій `stubcpp/iGames_website`).
 * **Верстка:** HTML5 + Tailwind CSS (CDN).
 * **Динаміка та API:** Асинхронний Vanilla JavaScript (Fetch API).
-* **Мережевий міст (Beta-тест):** програма **pinggy** (`free.pinggy.io`, SSH-тунель на порт 443) на домашньому ноутбуці розробника. Безкоштовний тунель живе 60 хвилин, тому публічна адреса змінюється щогодини.
-  * Скрипт `run_tunnel.sh` у репозиторії `iGames` автоматично перепіднімає тунель, витягує новий URL і пушить його у два репозиторії: `stubcpp/iGames` (`igames/iGames_website/tunnel_url.txt`, branch `master`) та `stubcpp/iGames_website` (`tunnel_url.txt`, branch `main`).
-  * Жорстко зашитої адреси в коді сайту немає: `leaderboard/index.html` на кожному завантаженні читає актуальний URL з `https://raw.githubusercontent.com/stubcpp/iGames_website/main/tunnel_url.txt`, перевіряє формат `^https://*.pinggy-free.link$` і лише у разі помилки використовує останню відому адресу (fallback).
+* **Мережевий міст (Beta-тест):** SSH-тунель **localhost.run** (`ssh -R 80:localhost:8080 nokey@localhost.run`, порт 22) на домашньому ноутбуці розробника. localhost.run не показує браузерну заглушку, тому CORS-запити сайту до API працюють напряму; адреса змінюється лише після обриву SSH-сесії.
+  * Скрипт `igames/tools/tunnel/run_tunnel.sh` у репозиторії `iGames` автоматично перепіднімає тунель, витягує новий URL і пушить його у два репозиторії: `stubcpp/iGames` (`igames/iGames_website/tunnel_url.txt`, branch `master`) та `stubcpp/iGames_website` (`tunnel_url.txt`, branch `main`).
+  * Жорстко зашитої адреси в коді сайту немає: `leaderboard/index.html` на кожному завантаженні читає актуальний URL з `https://raw.githubusercontent.com/stubcpp/iGames_website/main/tunnel_url.txt`, перевіряє формат `^https://*.lhr.life$` (або `*.pinggy-free.link` для сумісності) і лише у разі помилки використовує останню відому адресу.
   * `raw.githubusercontent.com` кешується CDN до 5 хвилин, тому якщо отримана адреса не відповідає, сторінка повторно читає файл через GitHub API (`api.github.com`, `max-age` 60 с, заголовок `Accept: application/vnd.github.raw`) і робить рівно одну повторну спробу запиту лідерборда.
-  * Банер на всіх сторінках (`index.html`, `docs/index.html`, `leaderboard/index.html`) показує актуальну адресу у форматі `wss://...`; її отримує `js/server-banner.js` через спільний модуль `js/tunnel.js`.
-  * Запит Fetch досі передає заголовок `"ngrok-skip-browser-warning": "true"` — це спадок від старого ngrok-тунелю; сервер дозволяє цей заголовок у CORS preflight.
+  * Банер на всіх сторінках (`index.html`, `docs/index.html`, `leaderboard/index.html`) показує актуальну адресу у форматі `wss://...`; її отримує `js/server-banner.js` через спільний модуль `js/tunnel.js`. Якщо raw-адреса вже не відповідає, банер перевіряє її доступність і перечитує URL через GitHub API.
+  * Запити лідерборда не передають кастомних заголовків, тому CORS preflight не виконується; сервер віддає `Access-Control-Allow-Origin: *`. Заголовок `ngrok-skip-browser-warning` у CORS-конфігурації сервера залишено лише для сумісності.
 
 ---
 

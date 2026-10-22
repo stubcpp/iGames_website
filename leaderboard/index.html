@@ -406,9 +406,7 @@
       async function fetchLeaderboard(baseUrl) {
         const response = await fetch(`${baseUrl}/api/leaderboard?game=${current_game}`, {
           method: "GET",
-          headers: {
-            "ngrok-skip-browser-warning": "true"
-          }
+          cache: "no-store"
         });
 
         if (!response.ok) {
