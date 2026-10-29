@@ -404,7 +404,11 @@
     for (var i = 0; i < textNodes.length; i++) {
       var key = textNodes[i].getAttribute("data-i18n");
       if (typeof dict[key] === "string") {
-        textNodes[i].textContent = dict[key];
+        if (dict[key].indexOf("<a ") !== -1) {
+          textNodes[i].innerHTML = dict[key];
+        } else {
+          textNodes[i].textContent = dict[key];
+        }
       }
     }
 
